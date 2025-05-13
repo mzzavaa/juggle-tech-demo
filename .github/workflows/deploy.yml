@@ -38,7 +38,19 @@ jobs:
           extended: true
           
       - name: Build
-        run: hugo --minify
+        run: |
+          # Get the repository name for the baseURL
+          REPO_NAME=$(echo "$GITHUB_REPOSITORY" | cut -d '/' -f 2)
+          GITHUB_USER=$(echo "$GITHUB_REPOSITORY" | cut -d '/' -f 1)
+          
+          # Check if this is a user/organization site or a project site
+          if [ "$REPO_NAME" = "$GITHUB_USER.github.io" ]; then
+            # User/organization site
+            hugo --minify --baseURL="https://$GITHUB_USER.github.io/"
+          else
+            # Project site
+            hugo --minify --baseURL="https://$GITHUB_USER.github.io/$REPO_NAME/"
+          fi
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

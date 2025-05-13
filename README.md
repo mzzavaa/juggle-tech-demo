@@ -58,6 +58,16 @@ JuggleTech is built on three core principles:
 
 4. Open your browser and visit http://localhost:1313
 
+### Deployment Notes
+
+The project uses relative URLs throughout, making it flexible for deployment in any environment:
+
+- **Local Development**: Works out of the box with `hugo server`
+- **GitHub Pages**: The GitHub Actions workflow automatically sets the correct baseURL for production
+- **Custom Hosting**: No configuration changes needed - the site adapts to where it's hosted
+
+This approach ensures maximum portability without requiring manual configuration changes.
+
 ## How to Fork and Deploy Your Own JuggleTech
 
 1. **Fork the Repository**
