@@ -16,7 +16,7 @@
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex space-x-6">
                 {{ range .Site.Params.nav }}
-                <a href="{{ .url | relURL }}" class="text-gray-700 hover:text-primary font-medium {{ if eq $.RelPermalink .url }}text-primary border-b-2 border-primary{{ end }}">
+                <a href="{{ .url | relURL }}" class="text-gray-700 hover:text-primary font-medium {{ if eq $.RelPermalink (printf "/%s/" .url) }}text-primary border-b-2 border-primary{{ end }}">
                     {{ .name }}
                 </a>
                 {{ end }}
@@ -34,7 +34,7 @@
         <div id="mobile-menu" class="md:hidden hidden pt-4">
             <nav class="flex flex-col space-y-3">
                 {{ range .Site.Params.nav }}
-                <a href="{{ .url | relURL }}" class="text-gray-700 hover:text-primary font-medium py-2 {{ if eq $.RelPermalink .url }}text-primary border-l-4 border-primary pl-2{{ else }}pl-3{{ end }}">
+                <a href="{{ .url | relURL }}" class="text-gray-700 hover:text-primary font-medium py-2 {{ if eq $.RelPermalink (printf "/%s/" .url) }}text-primary border-l-4 border-primary pl-2{{ else }}pl-3{{ end }}">
                     {{ .name }}
                 </a>
                 {{ end }}

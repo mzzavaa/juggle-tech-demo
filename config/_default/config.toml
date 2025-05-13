@@ -17,23 +17,23 @@ enableGitInfo = false
     weight = 1
   [[params.nav]]
     name = "Modules"
-    url = "/modules/"
+    url = "modules/"
     weight = 2
   [[params.nav]]
     name = "Practice"
-    url = "/practice/"
+    url = "practice/"
     weight = 3
   [[params.nav]]
     name = "Achievements"
-    url = "/achievements/"
+    url = "achievements/"
     weight = 4
   [[params.nav]]
     name = "News"
-    url = "/news/"
+    url = "news/"
     weight = 5
   [[params.nav]]
     name = "About"
-    url = "/about/"
+    url = "about/"
     weight = 6
 
 [markup]
