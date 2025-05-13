@@ -40,13 +40,14 @@ jobs:
       - name: Install PostCSS CLI
         run: npm install -g postcss-cli
           
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v4
+        
       - name: Build
         run: |
-          # Get the repository name for the baseURL
-          REPO_NAME=$(echo "$GITHUB_REPOSITORY" | cut -d '/' -f 2)
-          
-          # Build with the correct baseURL for GitHub Pages
-          hugo --minify --baseURL="/$REPO_NAME/"
+          # Use the base_url from GitHub Pages configuration
+          hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
