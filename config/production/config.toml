@@ -1,2 +1,3 @@
 baseURL = "https://mzzavaa.github.io/juggle-tech-demo/"
 canonifyURLs = true
+relativeURLs = false
