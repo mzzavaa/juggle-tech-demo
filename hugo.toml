@@ -4,6 +4,7 @@ title = "JuggleTech Dashboard"
 enableEmoji = true
 relativeURLs = true
 canonifyURLs = false
+uglyURLs = false
 
 # Enable Git info for last modified date
 enableGitInfo = false

@@ -19,8 +19,10 @@
     {{ $styles = $styles | css.PostCSS }}
     {{ if hugo.IsProduction }}
         {{ $styles = $styles | minify | fingerprint }}
+        <link rel="stylesheet" href="{{ $styles.RelPermalink | relURL }}">
+    {{ else }}
+        <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
     {{ end }}
-    <link rel="stylesheet" href="{{ $styles.RelPermalink | relURL }}">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
