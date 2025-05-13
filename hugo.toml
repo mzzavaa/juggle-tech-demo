@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "/juggle-tech-demo/"
 languageCode = "en-us"
 title = "JuggleTech Dashboard"
 enableEmoji = true

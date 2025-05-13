@@ -41,19 +41,7 @@ jobs:
         run: npm install -g postcss-cli
           
       - name: Build
-        run: |
-          # For GitHub Pages with relative URLs, we need to set the correct baseURL
-          # but use relativeURLs=true in the Hugo configuration
-          REPO_NAME=$(echo "$GITHUB_REPOSITORY" | cut -d '/' -f 2)
-          GITHUB_USER=$(echo "$GITHUB_REPOSITORY" | cut -d '/' -f 1)
-          
-          if [ "$REPO_NAME" = "$GITHUB_USER.github.io" ]; then
-            # User/organization site - root domain
-            hugo --minify
-          else
-            # Project site - needs the subpath in baseURL
-            hugo --minify --baseURL="/$REPO_NAME/"
-          fi
+        run: hugo --minify
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
