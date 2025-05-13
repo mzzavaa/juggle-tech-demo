@@ -42,17 +42,17 @@ jobs:
           
       - name: Build
         run: |
-          # Get the repository name for the baseURL
+          # For GitHub Pages with relative URLs, we need to set the correct baseURL
+          # but use relativeURLs=true in the Hugo configuration
           REPO_NAME=$(echo "$GITHUB_REPOSITORY" | cut -d '/' -f 2)
           GITHUB_USER=$(echo "$GITHUB_REPOSITORY" | cut -d '/' -f 1)
           
-          # Check if this is a user/organization site or a project site
           if [ "$REPO_NAME" = "$GITHUB_USER.github.io" ]; then
-            # User/organization site
-            hugo --minify --baseURL="https://$GITHUB_USER.github.io/"
+            # User/organization site - root domain
+            hugo --minify
           else
-            # Project site
-            hugo --minify --baseURL="https://$GITHUB_USER.github.io/$REPO_NAME/"
+            # Project site - needs the subpath in baseURL
+            hugo --minify --baseURL="/$REPO_NAME/"
           fi
         
       - name: Upload artifact
