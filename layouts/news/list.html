@@ -1,0 +1,80 @@
+{{ define "main" }}
+<section class="bg-gradient-to-r from-primary to-secondary py-12 text-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">{{ .Title }}</h1>
+            <p class="text-xl opacity-90">{{ .Description }}</p>
+        </div>
+    </div>
+</section>
+
+<section class="py-8">
+    <div class="container mx-auto px-4">
+        <!-- RSS Feed Example -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-6">TechWorld with Nana</h2>
+            
+            <div class="space-y-6">
+                <!-- This would normally be populated by an RSS feed -->
+                <div class="border-b border-gray-200 pb-6">
+                    <h3 class="text-xl font-bold mb-2">
+                        <a href="#" class="text-dark hover:text-primary">Kubernetes vs Docker: Understanding the Differences</a>
+                    </h3>
+                    <p class="text-gray-500 text-sm mb-2">May 10, 2025</p>
+                    <p class="text-gray-600">Docker and Kubernetes are complementary technologies, but they serve different purposes. This article explains the key differences and how they work together in modern DevOps environments.</p>
+                    <a href="#" class="text-primary hover:underline mt-2 inline-block">Read more</a>
+                </div>
+                
+                <div class="border-b border-gray-200 pb-6">
+                    <h3 class="text-xl font-bold mb-2">
+                        <a href="#" class="text-dark hover:text-primary">Getting Started with AWS Lambda: Serverless Computing Explained</a>
+                    </h3>
+                    <p class="text-gray-500 text-sm mb-2">May 5, 2025</p>
+                    <p class="text-gray-600">Serverless computing is changing how we build and deploy applications. Learn how AWS Lambda works and how to create your first serverless function in this comprehensive guide.</p>
+                    <a href="#" class="text-primary hover:underline mt-2 inline-block">Read more</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-6">AWS News</h2>
+            
+            <div class="space-y-6">
+                <!-- This would normally be populated by an RSS feed -->
+                <div class="border-b border-gray-200 pb-6">
+                    <h3 class="text-xl font-bold mb-2">
+                        <a href="#" class="text-dark hover:text-primary">AWS Announces New Bedrock Features for Enterprise AI</a>
+                    </h3>
+                    <p class="text-gray-500 text-sm mb-2">May 12, 2025</p>
+                    <p class="text-gray-600">Amazon Web Services has announced new features for Amazon Bedrock, making it easier for enterprises to build, deploy, and manage generative AI applications at scale.</p>
+                    <a href="#" class="text-primary hover:underline mt-2 inline-block">Read more</a>
+                </div>
+                
+                <div class="border-b border-gray-200 pb-6">
+                    <h3 class="text-xl font-bold mb-2">
+                        <a href="#" class="text-dark hover:text-primary">AWS Lambda Now Supports Python 4.0</a>
+                    </h3>
+                    <p class="text-gray-500 text-sm mb-2">May 8, 2025</p>
+                    <p class="text-gray-600">AWS Lambda now supports Python 4.0 runtime, allowing developers to leverage the latest Python features in their serverless applications.</p>
+                    <a href="#" class="text-primary hover:underline mt-2 inline-block">Read more</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- How to Configure RSS -->
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-4">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <i class="fas fa-info-circle text-blue-500"></i>
+                </div>
+                <div class="ml-3">
+                    <h3 class="text-sm font-medium text-blue-800">Configure Your Own News Sources</h3>
+                    <div class="mt-2 text-sm text-blue-700">
+                        <p>To add your own RSS feeds, edit the <code class="bg-blue-100 px-1 py-0.5 rounded">hugo.toml</code> file and add your preferred RSS feed URLs under the <code class="bg-blue-100 px-1 py-0.5 rounded">params.rss_feeds</code> section.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}

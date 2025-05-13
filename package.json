@@ -1,0 +1,29 @@
+{
+  "name": "juggletech",
+  "version": "1.0.0",
+  "description": "A learning dashboard that combines technical skills, real-world use cases, and business validation",
+  "main": "index.js",
+  "scripts": {
+    "dev": "hugo server --disableFastRender",
+    "build": "hugo --minify",
+    "clean": "rm -rf public resources"
+  },
+  "keywords": [
+    "hugo",
+    "tailwindcss",
+    "learning",
+    "dashboard"
+  ],
+  "author": "Linda Mohamed & Nana Janashia",
+  "license": "SEE LICENSE IN LICENSE",
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.6"
+  }
+}

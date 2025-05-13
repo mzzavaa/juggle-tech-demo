@@ -1,0 +1,51 @@
+<header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+            <a href="/" class="flex items-center space-x-2">
+                <img src="{{ "images/logo.svg" | relURL }}" alt="JuggleTech Logo" class="h-8 w-auto">
+                <span class="text-xl font-heading font-bold text-gray-900">JuggleTech</span>
+            </a>
+            
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-button" class="md:hidden flex items-center">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-6">
+                {{ range .Site.Params.nav }}
+                <a href="{{ .url }}" class="text-gray-700 hover:text-primary font-medium {{ if eq $.RelPermalink .url }}text-primary border-b-2 border-primary{{ end }}">
+                    {{ .name }}
+                </a>
+                {{ end }}
+                
+                <!-- GitHub Stats Link -->
+                {{ with .Site.Params.github_user }}
+                <a href="https://github.com/{{ . }}" target="_blank" rel="noopener" class="text-gray-700 hover:text-primary">
+                    <i class="fab fa-github"></i>
+                </a>
+                {{ end }}
+            </nav>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="md:hidden hidden pt-4">
+            <nav class="flex flex-col space-y-3">
+                {{ range .Site.Params.nav }}
+                <a href="{{ .url }}" class="text-gray-700 hover:text-primary font-medium py-2 {{ if eq $.RelPermalink .url }}text-primary border-l-4 border-primary pl-2{{ else }}pl-3{{ end }}">
+                    {{ .name }}
+                </a>
+                {{ end }}
+                
+                <!-- GitHub Stats Link -->
+                {{ with .Site.Params.github_user }}
+                <a href="https://github.com/{{ . }}" target="_blank" rel="noopener" class="text-gray-700 hover:text-primary py-2 pl-3">
+                    <i class="fab fa-github mr-2"></i> GitHub Profile
+                </a>
+                {{ end }}
+            </nav>
+        </div>
+    </div>
+</header>

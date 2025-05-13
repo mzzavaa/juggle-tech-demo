@@ -1,0 +1,49 @@
+<footer class="bg-dark text-white py-8">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-lg font-bold mb-4">JuggleTech Dashboard</h3>
+                <p class="text-gray-300">
+                    An open-source learning dashboard that combines technical skills, real-world use cases, and business validation.
+                </p>
+                <div class="mt-4 flex space-x-4">
+                    <a href="https://github.com/yourusername/juggletech" target="_blank" rel="noopener" class="text-gray-300 hover:text-white">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://twitter.com/yourusername" target="_blank" rel="noopener" class="text-gray-300 hover:text-white">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener" class="text-gray-300 hover:text-white">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                <ul class="space-y-2">
+                    {{ range .Site.Params.nav }}
+                    <li>
+                        <a href="{{ .url }}" class="text-gray-300 hover:text-white">{{ .name }}</a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="text-lg font-bold mb-4">Created By</h3>
+                <p class="text-gray-300">
+                    <a href="https://github.com/lindamohamed" target="_blank" rel="noopener" class="text-white hover:underline">Linda Mohamed</a> &
+                    <a href="https://github.com/nanajanashia" target="_blank" rel="noopener" class="text-white hover:underline">Nana Janashia</a>
+                </p>
+                <p class="text-gray-300 mt-2">
+                    AWS Heroes from Austria
+                </p>
+            </div>
+        </div>
+        
+        <div class="mt-8 pt-6 border-t border-gray-700 text-center text-gray-400">
+            <p>© {{ now.Format "2006" }} JuggleTech. Licensed under <a href="/license" class="text-gray-300 hover:text-white">JuggleTech Community License</a>.</p>
+        </div>
+    </div>
+</footer>

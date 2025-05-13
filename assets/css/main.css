@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans text-gray-800 bg-gray-50;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-md font-medium transition-colors;
+  }
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-dark;
+  }
+  .btn-secondary {
+    @apply bg-secondary text-white hover:bg-secondary-dark;
+  }
+  .btn-outline {
+    @apply border border-gray-300 hover:bg-gray-100;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg shadow-md overflow-hidden;
+  }
+  
+  .progress-bar {
+    @apply h-2 bg-gray-200 rounded-full overflow-hidden;
+  }
+  .progress-bar-fill {
+    @apply h-full bg-primary rounded-full;
+  }
+  
+  .achievement {
+    @apply flex items-center p-4 border rounded-lg;
+  }
+  .achievement-unlocked {
+    @apply border-green-500 bg-green-50;
+  }
+  .achievement-locked {
+    @apply border-gray-300 bg-gray-50 opacity-60;
+  }
+  
+  .module-card {
+    @apply card p-6 transition-all hover:shadow-lg;
+  }
+  .module-completed {
+    @apply border-l-4 border-green-500;
+  }
+  .module-in-progress {
+    @apply border-l-4 border-blue-500;
+  }
+  .module-unlocked {
+    @apply border-l-4 border-amber-500;
+  }
+  .module-locked {
+    @apply border-l-4 border-gray-300 opacity-70;
+  }
+}

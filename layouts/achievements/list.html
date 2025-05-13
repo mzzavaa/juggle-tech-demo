@@ -1,0 +1,77 @@
+{{ define "main" }}
+<section class="bg-gradient-to-r from-primary to-secondary py-12 text-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">{{ .Title }}</h1>
+            <p class="text-xl opacity-90">{{ .Description }}</p>
+        </div>
+    </div>
+</section>
+
+<!-- Calculate achievement stats -->
+{{ $achievements := .Site.Data.achievements.achievements }}
+{{ $totalAchievements := len $achievements }}
+{{ $unlockedAchievements := len (where $achievements "status" "Unlocked") }}
+{{ $unlockedPercentage := div (mul $unlockedAchievements 100) $totalAchievements }}
+
+<section class="py-8">
+    <div class="container mx-auto px-4">
+        <!-- Overall Progress -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4">Achievement Progress</h2>
+            
+            <div class="flex items-center mb-4">
+                <div class="w-full bg-gray-200 rounded-full h-4 mr-2">
+                    <div class="bg-primary h-4 rounded-full" style="width: {{ $unlockedPercentage }}%"></div>
+                </div>
+                <span class="text-lg font-semibold">{{ $unlockedAchievements }}/{{ $totalAchievements }} ({{ $unlockedPercentage }}%)</span>
+            </div>
+        </div>
+        
+        <!-- Achievement Categories -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-6">Unlocked Achievements</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {{ range where $achievements "status" "Unlocked" }}
+                <div class="achievement achievement-unlocked achievement-item">
+                    <div class="mr-4 text-2xl text-green-500">
+                        <i class="{{ .icon }}"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg">{{ .title }}</h3>
+                        <p class="text-gray-600 text-sm">{{ .description }}</p>
+                        <p class="text-gray-500 text-xs mt-1">Unlocked on {{ .date }}</p>
+                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full mt-2 inline-block">{{ .category }}</span>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+        
+        <div>
+            <h2 class="text-2xl font-bold mb-6">Locked Achievements</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {{ range where $achievements "status" "Locked" }}
+                <div class="achievement achievement-locked achievement-item">
+                    <div class="mr-4 text-2xl text-gray-400">
+                        <i class="{{ .icon }}"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg">{{ .title }}</h3>
+                        <p class="text-gray-600 text-sm">{{ .description }}</p>
+                        <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full mt-2 inline-block">{{ .category }}</span>
+                    </div>
+                    
+                    <!-- Hidden tooltip -->
+                    <div class="achievement-tooltip hidden absolute bg-dark text-white p-3 rounded-md shadow-lg text-sm z-10 max-w-xs">
+                        <p>Complete related modules to unlock this achievement.</p>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}

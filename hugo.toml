@@ -1,0 +1,51 @@
+baseURL = "http://localhost:1313/"
+languageCode = "en-us"
+title = "JuggleTech Dashboard"
+enableEmoji = true
+
+# Enable Git info for last modified date
+enableGitInfo = false
+
+[params]
+  description = "Track your learning journey with JuggleTech - combining technical skills, real-world use cases, and business validation"
+  author = "Linda Mohamed & Nana Janashia"
+  github_user = "yourusername"
+  
+  # Main navigation
+  [[params.nav]]
+    name = "Dashboard"
+    url = "/"
+    weight = 1
+  [[params.nav]]
+    name = "Modules"
+    url = "/modules/"
+    weight = 2
+  [[params.nav]]
+    name = "Practice"
+    url = "/practice/"
+    weight = 3
+  [[params.nav]]
+    name = "Achievements"
+    url = "/achievements/"
+    weight = 4
+  [[params.nav]]
+    name = "News"
+    url = "/news/"
+    weight = 5
+  [[params.nav]]
+    name = "About"
+    url = "/about/"
+    weight = 6
+
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = false
+    lineNos = false
+    noClasses = false
+    style = "github"
+  [markup.goldmark.renderer]
+    unsafe = true
+
+[build]
+  writeStats = true

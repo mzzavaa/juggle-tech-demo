@@ -1,0 +1,207 @@
+{{ define "main" }}
+<!-- Calculate overall progress -->
+{{ $modules := .Site.Data.modules.modules }}
+{{ $totalModules := len $modules }}
+{{ $completedModules := 0 }}
+{{ $inProgressModules := 0 }}
+{{ $unlockedModules := 0 }}
+{{ $totalProgress := 0 }}
+
+{{ range $modules }}
+    {{ $totalProgress = add $totalProgress .progress }}
+    {{ if eq .status "Completed" }}
+        {{ $completedModules = add $completedModules 1 }}
+    {{ else if eq .status "In Progress" }}
+        {{ $inProgressModules = add $inProgressModules 1 }}
+    {{ else if eq .status "Unlocked" }}
+        {{ $unlockedModules = add $unlockedModules 1 }}
+    {{ end }}
+{{ end }}
+
+{{ $overallProgress := div $totalProgress $totalModules }}
+
+<!-- Dashboard Header -->
+<section class="bg-gradient-to-r from-primary to-secondary py-12 text-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">Welcome to Your JuggleTech Dashboard</h1>
+            <p class="text-xl opacity-90">Track your learning journey across technical skills, use cases, and business validation</p>
+        </div>
+    </div>
+</section>
+
+<!-- Overall Progress -->
+<section class="py-8">
+    <div class="container mx-auto px-4">
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-bold mb-4">Overall Progress</h2>
+            
+            <div class="flex items-center mb-4">
+                <div class="w-full bg-gray-200 rounded-full h-4 mr-2">
+                    <div class="bg-primary h-4 rounded-full" style="width: {{ $overallProgress }}%"></div>
+                </div>
+                <span class="text-lg font-semibold">{{ math.Round $overallProgress }}%</span>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                <div class="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
+                    <span class="text-green-600 text-3xl font-bold">{{ $completedModules }}</span>
+                    <p class="text-gray-700">Completed Modules</p>
+                </div>
+                
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
+                    <span class="text-blue-600 text-3xl font-bold">{{ $inProgressModules }}</span>
+                    <p class="text-gray-700">In Progress</p>
+                </div>
+                
+                <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-center">
+                    <span class="text-amber-600 text-3xl font-bold">{{ $unlockedModules }}</span>
+                    <p class="text-gray-700">Unlocked & Ready</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Current Module -->
+{{ $currentModule := index (where $modules "status" "In Progress") 0 }}
+{{ if $currentModule }}
+<section class="py-8 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-2xl font-bold mb-6">Current Module</h2>
+        
+        <div class="module-card module-in-progress">
+            <h3 class="text-xl font-bold mb-2">{{ $currentModule.title }}</h3>
+            
+            <div class="flex items-center mb-4">
+                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-2">{{ $currentModule.category }}</span>
+                <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">{{ $currentModule.prop }}</span>
+            </div>
+            
+            <p class="text-gray-600 mb-4">{{ $currentModule.description }}</p>
+            
+            <div class="mb-4">
+                <div class="flex justify-between text-sm mb-1">
+                    <span>Progress</span>
+                    <span>{{ $currentModule.progress }}%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" data-percentage="{{ $currentModule.progress }}"></div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <h4 class="font-semibold text-gray-700">Tech Focus:</h4>
+                    <p class="text-gray-600">{{ $currentModule.techFocus }}</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-700">Juggling Focus:</h4>
+                    <p class="text-gray-600">{{ $currentModule.jugglingFocus }}</p>
+                </div>
+            </div>
+            
+            <div class="flex justify-end">
+                <a href="/modules/#{{ $currentModule.id }}" class="btn btn-primary">Continue Learning</a>
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}
+
+<!-- Recent Achievements -->
+<section class="py-8">
+    <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold">Recent Achievements</h2>
+            <a href="/achievements/" class="text-primary hover:underline">View All</a>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {{ range first 3 (where .Site.Data.achievements.achievements "status" "Unlocked") }}
+            <div class="achievement achievement-unlocked">
+                <div class="mr-4 text-2xl text-green-500">
+                    <i class="{{ .icon }}"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg">{{ .title }}</h3>
+                    <p class="text-gray-600 text-sm">{{ .description }}</p>
+                    <p class="text-gray-500 text-xs mt-1">Unlocked on {{ .date }}</p>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+<!-- Recent Practice -->
+<section class="py-8 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold">Recent Practice</h2>
+            <a href="/practice/" class="text-primary hover:underline">View All</a>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow overflow-hidden">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Duration</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Catches</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Streak</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    {{ range first 3 .Site.Data.practice.practice }}
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ .date }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ .prop }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ .duration }} min</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ .catches }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ .streak }}</td>
+                    </tr>
+                    {{ end }}
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="bg-white p-4 rounded-lg shadow text-center">
+                <p class="text-gray-500 text-sm">Total Practice Time</p>
+                <p class="text-2xl font-bold">{{ .Site.Data.practice.stats.totalTime }} min</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow text-center">
+                <p class="text-gray-500 text-sm">Average Session</p>
+                <p class="text-2xl font-bold">{{ .Site.Data.practice.stats.averageSessionLength }} min</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow text-center">
+                <p class="text-gray-500 text-sm">Longest Streak</p>
+                <p class="text-2xl font-bold">{{ .Site.Data.practice.stats.longestStreak }}</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow text-center">
+                <p class="text-gray-500 text-sm">Total Catches</p>
+                <p class="text-2xl font-bold">{{ .Site.Data.practice.stats.totalCatches }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GitHub Stats -->
+{{ with .Site.Params.github_user }}
+<section class="py-8">
+    <div class="container mx-auto px-4">
+        <h2 class="text-2xl font-bold mb-6">GitHub Activity</h2>
+        
+        <div class="flex flex-col md:flex-row gap-6 justify-center">
+            <img src="https://github-readme-stats.vercel.app/api?username={{ . }}&show_icons=true&theme=radical" 
+                 alt="GitHub Stats" class="mx-auto md:mx-0" />
+            
+            <img src="https://github-readme-stats.vercel.app/api/top-langs/?username={{ . }}&layout=compact&theme=radical" 
+                 alt="Top Languages" class="mx-auto md:mx-0" />
+        </div>
+    </div>
+</section>
+{{ end }}
+{{ end }}

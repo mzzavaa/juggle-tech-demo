@@ -1,0 +1,154 @@
+{{ define "main" }}
+<section class="bg-gradient-to-r from-primary to-secondary py-12 text-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">{{ .Title }}</h1>
+            <p class="text-xl opacity-90">{{ .Description }}</p>
+        </div>
+    </div>
+</section>
+
+<section class="py-8">
+    <div class="container mx-auto px-4">
+        <div class="bg-white rounded-lg shadow-md p-8">
+            <div class="prose prose-lg max-w-none">
+                {{ .Content }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GitHub Stats -->
+{{ with .Site.Params.github_user }}
+<section class="py-8 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-2xl font-bold mb-6 text-center">GitHub Activity</h2>
+        
+        <div class="flex flex-col md:flex-row gap-6 justify-center">
+            <img src="https://github-readme-stats.vercel.app/api?username={{ . }}&show_icons=true&theme=radical" 
+                 alt="GitHub Stats" class="mx-auto md:mx-0" />
+            
+            <img src="https://github-readme-stats.vercel.app/api/top-langs/?username={{ . }}&layout=compact&theme=radical" 
+                 alt="Top Languages" class="mx-auto md:mx-0" />
+        </div>
+    </div>
+</section>
+{{ end }}
+
+<!-- Fork Instructions -->
+<section class="py-8">
+    <div class="container mx-auto px-4">
+        <div class="bg-white rounded-lg shadow-md p-8">
+            <h2 class="text-2xl font-bold mb-6">How to Fork and Deploy Your Own JuggleTech</h2>
+            
+            <div class="space-y-6">
+                <div class="flex">
+                    <div class="flex-shrink-0 mr-4">
+                        <div class="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">1</div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl mb-2">Fork the Repository</h3>
+                        <p class="text-gray-600">Go to the <a href="https://github.com/yourusername/juggletech" class="text-primary hover:underline" target="_blank">JuggleTech GitHub repository</a> and click the "Fork" button in the top-right corner.</p>
+                    </div>
+                </div>
+                
+                <div class="flex">
+                    <div class="flex-shrink-0 mr-4">
+                        <div class="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">2</div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl mb-2">Enable GitHub Pages</h3>
+                        <p class="text-gray-600">Go to your repository's Settings > Pages and select "GitHub Actions" as the source.</p>
+                    </div>
+                </div>
+                
+                <div class="flex">
+                    <div class="flex-shrink-0 mr-4">
+                        <div class="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">3</div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl mb-2">Customize Your Dashboard</h3>
+                        <p class="text-gray-600">Edit the following files to personalize your dashboard:</p>
+                        <ul class="list-disc ml-6 mt-2 space-y-1">
+                            <li><code class="bg-gray-100 px-1 py-0.5 rounded">hugo.toml</code> - Update your GitHub username and site title</li>
+                            <li><code class="bg-gray-100 px-1 py-0.5 rounded">data/modules.json</code> - Track your learning modules</li>
+                            <li><code class="bg-gray-100 px-1 py-0.5 rounded">data/achievements.json</code> - Update your achievements</li>
+                            <li><code class="bg-gray-100 px-1 py-0.5 rounded">data/practice.json</code> - Log your practice sessions</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="flex">
+                    <div class="flex-shrink-0 mr-4">
+                        <div class="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">4</div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl mb-2">Commit and Push Changes</h3>
+                        <p class="text-gray-600">After making your changes, commit and push them to your repository. The GitHub Action will automatically build and deploy your site.</p>
+                    </div>
+                </div>
+                
+                <div class="flex">
+                    <div class="flex-shrink-0 mr-4">
+                        <div class="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">5</div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl mb-2">Access Your Dashboard</h3>
+                        <p class="text-gray-600">Your personalized JuggleTech dashboard will be available at <code class="bg-gray-100 px-1 py-0.5 rounded">https://yourusername.github.io/juggletech/</code></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contributing Section -->
+<section class="py-8 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-2xl font-bold mb-6 text-center">Contributing to JuggleTech</h2>
+        
+        <div class="bg-white rounded-lg shadow-md p-8">
+            <p class="text-gray-600 mb-6">We welcome contributions to the JuggleTech project! If you've created courses or use cases that you think would benefit others, here's how you can contribute:</p>
+            
+            <div class="space-y-4">
+                <div class="flex">
+                    <div class="flex-shrink-0 mr-3">
+                        <div class="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center">
+                            <i class="fas fa-code-branch text-green-500"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg">Create a Branch</h3>
+                        <p class="text-gray-600">Create a new branch in your fork for your feature or content.</p>
+                        <pre class="bg-gray-100 p-2 rounded mt-2 overflow-x-auto"><code>git checkout -b feature/my-new-courses</code></pre>
+                    </div>
+                </div>
+                
+                <div class="flex">
+                    <div class="flex-shrink-0 mr-3">
+                        <div class="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center">
+                            <i class="fas fa-edit text-green-500"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg">Make Your Changes</h3>
+                        <p class="text-gray-600">Add new courses to <code>data/modules.json</code> or new achievements to <code>data/achievements.json</code>.</p>
+                    </div>
+                </div>
+                
+                <div class="flex">
+                    <div class="flex-shrink-0 mr-3">
+                        <div class="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center">
+                            <i class="fas fa-code-pull-request text-green-500"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg">Submit a Pull Request</h3>
+                        <p class="text-gray-600">Push your branch to your fork and submit a pull request to the main repository.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}

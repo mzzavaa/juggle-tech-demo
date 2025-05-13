@@ -1,0 +1,41 @@
+{
+  "practice": [
+    {
+      "id": "practice-1",
+      "date": "2025-05-13",
+      "prop": "ball",
+      "duration": 15,
+      "catches": 42,
+      "drops": 8,
+      "streak": 12,
+      "notes": "First practice session. Getting comfortable with the basic throw."
+    },
+    {
+      "id": "practice-2",
+      "date": "2025-05-12",
+      "prop": "ball",
+      "duration": 20,
+      "catches": 67,
+      "drops": 12,
+      "streak": 18,
+      "notes": "Focused on consistent height and hand position."
+    },
+    {
+      "id": "practice-3",
+      "date": "2025-05-10",
+      "prop": "ball",
+      "duration": 15,
+      "catches": 53,
+      "drops": 9,
+      "streak": 22,
+      "notes": "Starting to get more comfortable with one ball."
+    }
+  ],
+  "stats": {
+    "totalTime": 50,
+    "totalCatches": 162,
+    "totalDrops": 29,
+    "longestStreak": 22,
+    "averageSessionLength": 16.7
+  }
+}

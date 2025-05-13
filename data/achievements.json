@@ -1,0 +1,70 @@
+{
+  "achievements": [
+    {
+      "id": "first-throw",
+      "title": "First Throw",
+      "description": "Successfully set up your development environment and project structure",
+      "category": "Foundation",
+      "status": "Unlocked",
+      "date": "2025-05-10",
+      "icon": "fa-solid fa-rocket"
+    },
+    {
+      "id": "one-ball-champion",
+      "title": "One Ball Champion",
+      "description": "Deployed your first AI model and successfully made API calls",
+      "category": "Technical",
+      "status": "Unlocked",
+      "date": "2025-05-12",
+      "icon": "fa-solid fa-robot"
+    },
+    {
+      "id": "use-case-architect",
+      "title": "Use Case Architect",
+      "description": "Defined a clear business use case with stakeholder needs and success metrics",
+      "category": "Business",
+      "status": "Locked",
+      "icon": "fa-solid fa-lightbulb"
+    },
+    {
+      "id": "memory-master",
+      "title": "Memory Master",
+      "description": "Implemented conversation history to give your AI assistant context awareness",
+      "category": "Technical",
+      "status": "Locked",
+      "icon": "fa-solid fa-database"
+    },
+    {
+      "id": "roi-wizard",
+      "title": "ROI Wizard",
+      "description": "Calculated and optimized the cost-benefit ratio of your AI solution",
+      "category": "Business",
+      "status": "Locked",
+      "icon": "fa-solid fa-chart-line"
+    },
+    {
+      "id": "three-ball-cascade",
+      "title": "Three Ball Cascade",
+      "description": "Orchestrated multiple AI services working together seamlessly",
+      "category": "Technical",
+      "status": "Locked",
+      "icon": "fa-solid fa-diagram-project"
+    },
+    {
+      "id": "pitch-perfect",
+      "title": "Pitch Perfect",
+      "description": "Created a compelling presentation of your AI solution for stakeholders",
+      "category": "Business",
+      "status": "Locked",
+      "icon": "fa-solid fa-presentation"
+    },
+    {
+      "id": "juggling-master",
+      "title": "Juggling Master",
+      "description": "Completed all modules and built a fully functional AI assistant",
+      "category": "Foundation",
+      "status": "Locked",
+      "icon": "fa-solid fa-trophy"
+    }
+  ]
+}

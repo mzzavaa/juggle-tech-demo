@@ -1,0 +1,124 @@
+{
+  "modules": [
+    {
+      "id": "module-1",
+      "title": "First Throw – Setting the Stage",
+      "techFocus": "Setup dev environment (Python, AWS CLI) and project scaffolding",
+      "jugglingFocus": "Foundations (toss a ball, don't aim to catch yet)",
+      "description": "Prepare your tools and define your first practice space. Like a juggler's first throw, we'll set up our development environment and project structure without worrying about the full implementation yet.",
+      "outcomes": [
+        "Development environment ready with Python and AWS CLI",
+        "Project repository initialized with proper structure",
+        "First test request made to AWS services"
+      ],
+      "duration": {
+        "tech": "1 hour",
+        "juggling": "2-3 days"
+      },
+      "status": "Completed",
+      "progress": 100,
+      "achievement": "First Throw",
+      "achievementId": "first-throw",
+      "category": "Foundation",
+      "prop": "ball",
+      "useCase": "Establishing the foundation for OTTO, our AI assistant project",
+      "businessValue": "Proper setup reduces future technical debt and ensures smooth development"
+    },
+    {
+      "id": "module-2",
+      "title": "One Ball – First Model Deployment",
+      "techFocus": "Amazon Bedrock: Deploy a foundation model via API",
+      "jugglingFocus": "One ball basic throw and catch",
+      "description": "Deploy and call your first Bedrock model using Python SDK (Boto3). Like juggling one ball up and down reliably, we'll establish a consistent connection to our first AI model.",
+      "outcomes": [
+        "Bedrock service access configured",
+        "Python code to invoke model implemented",
+        "Understanding of model endpoints and responses"
+      ],
+      "duration": {
+        "tech": "2 hours",
+        "juggling": "3-4 days"
+      },
+      "status": "In Progress",
+      "progress": 65,
+      "achievement": "One Ball Champion",
+      "achievementId": "one-ball-champion",
+      "category": "Technical",
+      "prop": "ball",
+      "useCase": "Creating the core Q&A capability for OTTO",
+      "businessValue": "Enables basic AI-powered responses, establishing proof of concept"
+    },
+    {
+      "id": "module-3",
+      "title": "Articulating Your Use Case – Business First Thinking",
+      "techFocus": "Requirements gathering and use case definition",
+      "jugglingFocus": "Understanding the performance space and audience",
+      "description": "Learn to formulate real problems and identify ROI before starting development. Like a juggler understanding their performance space, we'll define the boundaries and goals of our AI assistant.",
+      "outcomes": [
+        "Clearly defined use case document",
+        "Stakeholder needs analysis",
+        "Success metrics defined"
+      ],
+      "duration": {
+        "tech": "3 hours",
+        "juggling": "1-2 days"
+      },
+      "status": "Unlocked",
+      "progress": 0,
+      "achievement": "Use Case Architect",
+      "achievementId": "use-case-architect",
+      "category": "Business",
+      "prop": "rings",
+      "useCase": "Defining OTTO's purpose and target users",
+      "businessValue": "Ensures development efforts align with actual business needs and user requirements"
+    },
+    {
+      "id": "module-4",
+      "title": "Two Balls – Adding Memory",
+      "techFocus": "Implementing conversation history with DynamoDB",
+      "jugglingFocus": "Basic two ball exchange pattern",
+      "description": "Add memory to your AI assistant using DynamoDB. Like juggling two balls, we'll manage the back-and-forth between the user input and conversation history.",
+      "outcomes": [
+        "DynamoDB table for conversation history",
+        "Integration with Bedrock model",
+        "Contextual responses based on history"
+      ],
+      "duration": {
+        "tech": "4 hours",
+        "juggling": "1 week"
+      },
+      "status": "Locked",
+      "progress": 0,
+      "achievement": "Memory Master",
+      "achievementId": "memory-master",
+      "category": "Technical",
+      "prop": "ball",
+      "useCase": "Enabling OTTO to maintain context in conversations",
+      "businessValue": "Improves user experience by reducing repetition and enabling complex interactions"
+    },
+    {
+      "id": "module-5",
+      "title": "Designing ROI – Cost Awareness",
+      "techFocus": "AWS cost estimation and optimization",
+      "jugglingFocus": "Efficiency in movement and energy conservation",
+      "description": "Calculate the costs of your AI solution and compare with potential benefits. Like a juggler optimizing their movements, we'll ensure our solution is economically efficient.",
+      "outcomes": [
+        "Cost breakdown of AWS services used",
+        "ROI calculation methodology",
+        "Optimization strategies identified"
+      ],
+      "duration": {
+        "tech": "2 hours",
+        "juggling": "2-3 days"
+      },
+      "status": "Locked",
+      "progress": 0,
+      "achievement": "ROI Wizard",
+      "achievementId": "roi-wizard",
+      "category": "Business",
+      "prop": "clubs",
+      "useCase": "Justifying OTTO's development and operational costs",
+      "businessValue": "Provides clear financial justification for the project and identifies optimization opportunities"
+    }
+  ]
+}
