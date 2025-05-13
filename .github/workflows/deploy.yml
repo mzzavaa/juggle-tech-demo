@@ -41,7 +41,9 @@ jobs:
         run: npm install -g postcss-cli
           
       - name: Build
-        run: hugo --minify
+        run: |
+          # For GitHub Pages project sites, we need to set the baseURL to the subpath
+          hugo --minify --baseURL="/juggle-tech-demo/"
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

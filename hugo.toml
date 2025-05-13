@@ -1,4 +1,4 @@
-baseURL = "/juggle-tech-demo/"
+baseURL = "/"
 languageCode = "en-us"
 title = "JuggleTech Dashboard"
 enableEmoji = true
@@ -11,7 +11,7 @@ enableGitInfo = false
 [params]
   description = "Track your learning journey with JuggleTech - combining technical skills, real-world use cases, and business validation"
   author = "Linda Mohamed & Nana Janashia"
-  github_user = "yourusername"
+  github_user = "mzzavaa"
   
   # Main navigation
   [[params.nav]]
