@@ -24,7 +24,7 @@
                 <ul class="space-y-2">
                     {{ range .Site.Params.nav }}
                     <li>
-                        <a href="{{ .url | absURL }}" class="text-gray-300 hover:text-white">{{ .name }}</a>
+                        <a href="{{ .Site.BaseURL }}{{ strings.TrimPrefix "/" .url }}" class="text-gray-300 hover:text-white">{{ .name }}</a>
                     </li>
                     {{ end }}
                 </ul>

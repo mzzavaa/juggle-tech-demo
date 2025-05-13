@@ -1,7 +1,7 @@
 <header class="bg-white shadow">
     <div class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between">
-            <a href="{{ "/" | absURL }}" class="flex items-center space-x-2">
+            <a href="{{ .Site.BaseURL }}" class="flex items-center space-x-2">
                 <img src="{{ "images/logo.svg" | absURL }}" alt="JuggleTech Logo" class="h-8 w-auto">
                 <span class="text-xl font-heading font-bold text-gray-900">JuggleTech</span>
             </a>
@@ -16,7 +16,7 @@
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex space-x-6">
                 {{ range .Site.Params.nav }}
-                <a href="{{ .url | absURL }}" class="text-gray-700 hover:text-primary font-medium {{ if eq $.RelPermalink .url }}text-primary border-b-2 border-primary{{ end }}">
+                <a href="{{ .Site.BaseURL }}{{ strings.TrimPrefix "/" .url }}" class="text-gray-700 hover:text-primary font-medium {{ if eq $.RelPermalink .url }}text-primary border-b-2 border-primary{{ end }}">
                     {{ .name }}
                 </a>
                 {{ end }}
@@ -34,7 +34,7 @@
         <div id="mobile-menu" class="md:hidden hidden pt-4">
             <nav class="flex flex-col space-y-3">
                 {{ range .Site.Params.nav }}
-                <a href="{{ .url | absURL }}" class="text-gray-700 hover:text-primary font-medium py-2 {{ if eq $.RelPermalink .url }}text-primary border-l-4 border-primary pl-2{{ else }}pl-3{{ end }}">
+                <a href="{{ .Site.BaseURL }}{{ strings.TrimPrefix "/" .url }}" class="text-gray-700 hover:text-primary font-medium py-2 {{ if eq $.RelPermalink .url }}text-primary border-l-4 border-primary pl-2{{ else }}pl-3{{ end }}">
                     {{ .name }}
                 </a>
                 {{ end }}
