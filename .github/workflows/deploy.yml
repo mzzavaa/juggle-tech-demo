@@ -45,9 +45,7 @@ jobs:
         uses: actions/configure-pages@v4
         
       - name: Build
-        run: |
-          # Use the base_url from GitHub Pages configuration
-          hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+        run: hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}" --gc
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
