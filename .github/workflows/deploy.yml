@@ -37,6 +37,9 @@ jobs:
           hugo-version: '0.146.0'
           extended: true
           
+      - name: Install PostCSS CLI
+        run: npm install -g postcss-cli
+          
       - name: Build
         run: |
           # Get the repository name for the baseURL
