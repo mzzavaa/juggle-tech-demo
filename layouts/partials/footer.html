@@ -24,7 +24,7 @@
                 <ul class="space-y-2">
                     {{ range .Site.Params.nav }}
                     <li>
-                        <a href="{{ .Site.BaseURL }}{{ strings.TrimPrefix "/" .url }}" class="text-gray-300 hover:text-white">{{ .name }}</a>
+                        <a href="{{ .url | relURL }}" class="text-gray-300 hover:text-white">{{ .name }}</a>
                     </li>
                     {{ end }}
                 </ul>
@@ -43,7 +43,7 @@
         </div>
         
         <div class="mt-8 pt-6 border-t border-gray-700 text-center text-gray-400">
-            <p>© {{ now.Format "2006" }} JuggleTech. Licensed under <a href="{{ "license" | absURL }}" class="text-gray-300 hover:text-white">JuggleTech Community License</a>.</p>
+            <p>© {{ now.Format "2006" }} JuggleTech. Licensed under <a href="{{ "license" | relURL }}" class="text-gray-300 hover:text-white">JuggleTech Community License</a>.</p>
         </div>
     </div>
 </footer>
