@@ -1,4 +1,4 @@
-baseURL = "https://mzzavaa.github.io/juggle-tech-demo/"
+baseURL = "/"
 languageCode = "en-us"
 title = "JuggleTech Dashboard"
 enableEmoji = true
