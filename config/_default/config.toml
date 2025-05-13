@@ -1,8 +1,6 @@
-baseURL = "/"
 languageCode = "en-us"
 title = "JuggleTech Dashboard"
 enableEmoji = true
-relativeURLs = true
 
 # Enable Git info for last modified date
 enableGitInfo = false

@@ -4,8 +4,8 @@
   "description": "A learning dashboard that combines technical skills, real-world use cases, and business validation",
   "main": "index.js",
   "scripts": {
-    "dev": "hugo server --disableFastRender",
-    "build": "hugo --minify",
+    "dev": "hugo server --disableFastRender --environment development",
+    "build": "hugo --minify --environment production",
     "clean": "rm -rf public resources"
   },
   "keywords": [
