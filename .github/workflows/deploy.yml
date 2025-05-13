@@ -42,8 +42,11 @@ jobs:
           
       - name: Build
         run: |
-          # Build with production configuration
-          hugo --minify --environment production
+          # Get the repository name for the baseURL
+          REPO_NAME=$(echo "$GITHUB_REPOSITORY" | cut -d '/' -f 2)
+          
+          # Build with the correct baseURL for GitHub Pages
+          hugo --minify --baseURL="/$REPO_NAME/"
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
