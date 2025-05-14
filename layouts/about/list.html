@@ -18,23 +18,6 @@
     </div>
 </section>
 
-<!-- GitHub Stats -->
-{{ with .Site.Params.github_user }}
-<section class="py-8 bg-gray-50">
-    <div class="container mx-auto px-4">
-        <h2 class="text-2xl font-bold mb-6 text-center">GitHub Activity</h2>
-        
-        <div class="flex flex-col md:flex-row gap-6 justify-center">
-            <img src="https://github-readme-stats.vercel.app/api?username={{ . }}&show_icons=true&theme=radical" 
-                 alt="GitHub Stats" class="mx-auto md:mx-0" />
-            
-            <img src="https://github-readme-stats.vercel.app/api/top-langs/?username={{ . }}&layout=compact&theme=radical" 
-                 alt="Top Languages" class="mx-auto md:mx-0" />
-        </div>
-    </div>
-</section>
-{{ end }}
-
 <!-- Fork Instructions -->
 <section class="py-8">
     <div class="container mx-auto px-4">
