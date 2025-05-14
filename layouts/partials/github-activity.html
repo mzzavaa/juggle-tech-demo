@@ -1,0 +1,189 @@
+<div class="bg-white rounded-lg shadow-md p-6 my-4">
+  <h3 class="text-xl font-heading font-bold mb-4 flex items-center">
+    <i class="fab fa-github text-gray-800 mr-3"></i>Recent Commits
+  </h3>
+  
+  <!-- Stats Cards -->
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
+      <span class="text-blue-600 text-2xl font-bold" id="total-commits">--</span>
+      <p class="text-gray-700">Recent Commits</p>
+    </div>
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
+      <span class="text-green-600 text-2xl font-bold" id="total-repos">--</span>
+      <p class="text-gray-700">Public Repositories</p>
+    </div>
+    <div class="bg-purple-50 border border-purple-200 rounded-lg p-4 text-center">
+      <span class="text-purple-600 text-2xl font-bold" id="top-language">--</span>
+      <p class="text-gray-700">Top Language</p>
+    </div>
+  </div>
+  
+  <!-- Latest Commits -->
+  <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+    <div id="github-commits" class="space-y-3">
+      <!-- Loading placeholders -->
+      <div class="animate-pulse flex items-center py-2 border-b border-gray-200">
+        <div class="h-4 w-4 bg-gray-300 rounded-full mr-3"></div>
+        <div class="h-4 bg-gray-300 rounded w-3/4"></div>
+        <div class="ml-auto h-4 bg-gray-300 rounded w-20"></div>
+      </div>
+      <div class="animate-pulse flex items-center py-2 border-b border-gray-200">
+        <div class="h-4 w-4 bg-gray-300 rounded-full mr-3"></div>
+        <div class="h-4 bg-gray-300 rounded w-2/3"></div>
+        <div class="ml-auto h-4 bg-gray-300 rounded w-20"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="mt-3 text-xs text-gray-500 text-right">
+    Data from GitHub public API (limited to recent activity)
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Define repositories to check - these are examples, will be replaced with actual repos
+  const repos = [
+    'juggle-tech-demo',
+    'meet-the-aws-community-dashboard'
+  ];
+  
+  // Function to format date
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+  }
+  
+  // Container for commits
+  const commitsContainer = document.getElementById('github-commits');
+  commitsContainer.innerHTML = ''; // Clear loading placeholders
+  
+  // First, fetch user's public repos
+  fetch('https://api.github.com/users/mzzavaa/repos?per_page=100')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(repos => {
+      // Update repos count
+      document.getElementById('total-repos').textContent = repos.length;
+      
+      // Count languages
+      const languages = {};
+      repos.forEach(repo => {
+        if (repo.language) {
+          languages[repo.language] = (languages[repo.language] || 0) + 1;
+        }
+      });
+      
+      // Find top language
+      let topLanguage = '';
+      let topCount = 0;
+      for (const [lang, count] of Object.entries(languages)) {
+        if (count > topCount) {
+          topLanguage = lang;
+          topCount = count;
+        }
+      }
+      
+      document.getElementById('top-language').textContent = topLanguage || 'N/A';
+      
+      // Get active repos (non-forks with recent activity)
+      const activeRepos = repos
+        .filter(repo => !repo.fork)
+        .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
+        .slice(0, 5)
+        .map(repo => repo.name);
+      
+      // Track how many repos we've processed
+      let reposProcessed = 0;
+      let allCommits = [];
+      
+      // Fetch commits from each active repo
+      activeRepos.forEach(repo => {
+        fetch(`https://api.github.com/repos/mzzavaa/${repo}/commits?per_page=5`)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then(commits => {
+            // Add repo name to each commit
+            commits.forEach(commit => {
+              commit.repoName = repo;
+            });
+            
+            // Add to our collection
+            allCommits = allCommits.concat(commits);
+            
+            // Increment counter
+            reposProcessed++;
+            
+            // If all repos processed, sort and display
+            if (reposProcessed === activeRepos.length) {
+              // Sort by date
+              allCommits.sort((a, b) => 
+                new Date(b.commit.author.date) - new Date(a.commit.author.date)
+              );
+              
+              // Update total commits count (limited to what we've fetched)
+              document.getElementById('total-commits').textContent = allCommits.length;
+              
+              // Take the most recent commits
+              const recentCommits = allCommits.slice(0, 5);
+              
+              // Display commits
+              if (recentCommits.length === 0) {
+                commitsContainer.innerHTML = '<p class="text-gray-500 py-2">No recent commits found.</p>';
+                return;
+              }
+              
+              recentCommits.forEach(commit => {
+                const commitElement = document.createElement('div');
+                commitElement.className = 'flex items-center py-2 border-b border-gray-200 last:border-0';
+                
+                const date = formatDate(commit.commit.author.date);
+                const message = commit.commit.message.split('\n')[0]; // First line only
+                
+                commitElement.innerHTML = `
+                  <div class="mr-3"><i class="fas fa-code-commit text-blue-500"></i></div>
+                  <div class="flex-grow">
+                    <span class="font-medium">${commit.repoName}</span>: 
+                    <span class="text-gray-600">${message}</span>
+                  </div>
+                  <div class="ml-auto text-xs text-gray-500">${date}</div>
+                `;
+                
+                commitsContainer.appendChild(commitElement);
+              });
+            }
+          })
+          .catch(error => {
+            console.error(`Error fetching commits for ${repo}:`, error);
+            
+            // Increment counter even on error
+            reposProcessed++;
+            
+            // If all repos processed, display what we have
+            if (reposProcessed === activeRepos.length && allCommits.length === 0) {
+              commitsContainer.innerHTML = '<p class="text-red-500 py-2">Error loading GitHub commits. Please try again later.</p>';
+            }
+          });
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching repos:', error);
+      document.getElementById('total-repos').textContent = '?';
+      document.getElementById('top-language').textContent = '?';
+      commitsContainer.innerHTML = '<p class="text-red-500 py-2">Error loading GitHub data. Please try again later.</p>';
+    });
+});
+</script>

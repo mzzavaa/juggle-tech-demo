@@ -134,56 +134,66 @@
     </div>
 </section>
 
-<!-- Recent Practice -->
+<!-- Projects Overview -->
 <section class="py-8 bg-gray-50">
     <div class="container mx-auto px-4">
         <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold">Recent Practice</h2>
-            <a href="/practice/" class="text-primary hover:underline">View All</a>
+            <h2 class="text-2xl font-bold">Projects & Use Cases</h2>
+            <a href="/projects/" class="text-primary hover:underline">View All</a>
         </div>
         
-        <div class="bg-white rounded-lg shadow overflow-hidden">
-            <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
-                    <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prop</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Duration</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Catches</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Streak</th>
-                    </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                    {{ range first 3 .Site.Data.practice.practice }}
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ .date }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ .prop }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ .duration }} min</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ .catches }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ .streak }}</td>
-                    </tr>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {{ range first 3 .Site.Data.projects.projects }}
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-5">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="font-bold text-lg">{{ .title }}</h3>
+                        <span class="px-2 py-1 rounded-full text-xs font-medium 
+                            {{ if eq .status "Completed" }}bg-green-100 text-green-800{{ else if eq .status "In Progress" }}bg-blue-100 text-blue-800{{ else }}bg-yellow-100 text-yellow-800{{ end }}">
+                            {{ .status }}
+                        </span>
+                    </div>
+                    
+                    <p class="text-gray-600 text-sm mb-3">{{ .description }}</p>
+                    
+                    <div class="mb-3">
+                        <div class="flex justify-between text-xs mb-1">
+                            <span>Progress</span>
+                            <span>{{ .progress }}%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-primary h-2 rounded-full" style="width: {{ .progress }}%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        {{ range first 3 .technologies }}
+                        <span class="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs">{{ . }}</span>
+                        {{ end }}
+                        {{ if gt (len .technologies) 3 }}
+                        <span class="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs">+{{ sub (len .technologies) 3 }}</span>
+                        {{ end }}
+                    </div>
+                    
+                    {{ $totalROI := 0 }}
+                    {{ range .useCases }}
+                        {{ if .roi }}
+                            {{ $totalROI = add $totalROI .roi }}
+                        {{ end }}
                     {{ end }}
-                </tbody>
-            </table>
-        </div>
-        
-        <div class="mt-6 grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div class="bg-white p-4 rounded-lg shadow text-center">
-                <p class="text-gray-500 text-sm">Total Practice Time</p>
-                <p class="text-2xl font-bold">{{ .Site.Data.practice.stats.totalTime }} min</p>
+                    
+                    {{ if gt $totalROI 0 }}
+                    <div class="text-right">
+                        <span class="text-xs text-gray-500">Total ROI</span>
+                        <div class="text-green-600 font-bold">${{ $totalROI }}K</div>
+                    </div>
+                    {{ end }}
+                </div>
+                <div class="bg-gray-50 px-5 py-3 border-t border-gray-200">
+                    <a href="/projects/#{{ .id }}" class="text-primary hover:underline text-sm">View Details</a>
+                </div>
             </div>
-            <div class="bg-white p-4 rounded-lg shadow text-center">
-                <p class="text-gray-500 text-sm">Average Session</p>
-                <p class="text-2xl font-bold">{{ .Site.Data.practice.stats.averageSessionLength }} min</p>
-            </div>
-            <div class="bg-white p-4 rounded-lg shadow text-center">
-                <p class="text-gray-500 text-sm">Longest Streak</p>
-                <p class="text-2xl font-bold">{{ .Site.Data.practice.stats.longestStreak }}</p>
-            </div>
-            <div class="bg-white p-4 rounded-lg shadow text-center">
-                <p class="text-gray-500 text-sm">Total Catches</p>
-                <p class="text-2xl font-bold">{{ .Site.Data.practice.stats.totalCatches }}</p>
-            </div>
+            {{ end }}
         </div>
     </div>
 </section>
@@ -194,12 +204,11 @@
     <div class="container mx-auto px-4">
         <h2 class="text-2xl font-bold mb-6">GitHub Activity</h2>
         
-        <div class="flex flex-col md:flex-row gap-6 justify-center">
-            <img src="https://github-readme-stats.vercel.app/api?username={{ . }}&show_icons=true&theme=radical" 
-                 alt="GitHub Stats" class="mx-auto md:mx-0" />
-            
-            <img src="https://github-readme-stats.vercel.app/api/top-langs/?username={{ . }}&layout=compact&theme=radical" 
-                 alt="Top Languages" class="mx-auto md:mx-0" />
+        {{ partial "github-activity.html" . }}
+        
+        <div class="mt-8 text-center">
+            <img src="https://github-readme-activity-graph.vercel.app/graph?username={{ . }}&theme=react-dark" 
+                 alt="GitHub Activity Graph" class="w-full max-w-5xl mx-auto rounded-lg shadow-md" />
         </div>
     </div>
 </section>

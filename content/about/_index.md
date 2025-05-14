@@ -5,7 +5,7 @@ description: "Learn about the JuggleTech Dashboard project and how to use it"
 
 # About JuggleTech Dashboard
 
-JuggleTech is an open-source **learning dashboard** created by AWS Heroes **Linda Mohamed** and **Nana Janashia** from Austria. The project combines technical learning with real-world project building, using juggling as a metaphor for skill acquisition.
+JuggleTech is an **idea in development** by AWS Hero **Linda Mohamed**. The concept envisions a **learning dashboard** that combines technical skill-building with real-world project creation, using juggling as a metaphor for progressive learning and mastery.
 
 ## The Juggling Metaphor
 
@@ -42,14 +42,6 @@ JuggleTech is designed to be forked and customized for your own learning journey
 2. Update your GitHub username in the configuration
 3. Customize modules and achievements to match your learning goals
 4. Deploy to GitHub Pages with the included workflow
-
-## About the Creators
-
-**Linda Mohamed** is an AWS Community Hero specializing in AI/ML, who bridges cloud technology with human skills. She literally juggles as a hobby!
-
-**Nana Janashia** is an AWS Container Hero and founder of "TechWorld with Nana," known for breaking down complex DevOps topics for hundreds of thousands of learners.
-
-Together, they created JuggleTech to help people learn by doing and build practical use cases while showcasing their achievements.
 
 ## License
 

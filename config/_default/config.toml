@@ -20,21 +20,25 @@ enableGitInfo = false
     url = "modules/"
     weight = 2
   [[params.nav]]
+    name = "Projects"
+    url = "projects/"
+    weight = 3
+  [[params.nav]]
     name = "Practice"
     url = "practice/"
-    weight = 3
+    weight = 4
   [[params.nav]]
     name = "Achievements"
     url = "achievements/"
-    weight = 4
+    weight = 5
   [[params.nav]]
     name = "News"
     url = "news/"
-    weight = 5
+    weight = 6
   [[params.nav]]
     name = "About"
     url = "about/"
-    weight = 6
+    weight = 7
 
 [markup]
   [markup.highlight]

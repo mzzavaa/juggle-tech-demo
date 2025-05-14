@@ -1,0 +1,316 @@
+{{ define "main" }}
+<section class="bg-gradient-to-r from-primary to-secondary py-12 text-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">Projects & Use Cases</h1>
+            <p class="text-xl opacity-90">Track your practical implementations, business cases, and ROI metrics</p>
+        </div>
+    </div>
+</section>
+
+<section class="py-8">
+    <div class="container mx-auto px-4">
+        <!-- Project Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                <div class="text-3xl font-bold text-primary mb-2">{{ len .Site.Data.projects.projects }}</div>
+                <div class="text-gray-600">Total Projects</div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                {{ $completedProjects := 0 }}
+                {{ range .Site.Data.projects.projects }}
+                    {{ if eq .status "Completed" }}
+                        {{ $completedProjects = add $completedProjects 1 }}
+                    {{ end }}
+                {{ end }}
+                <div class="text-3xl font-bold text-green-600 mb-2">{{ $completedProjects }}</div>
+                <div class="text-gray-600">Completed</div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                {{ $totalUseCases := 0 }}
+                {{ range .Site.Data.projects.projects }}
+                    {{ $totalUseCases = add $totalUseCases (len .useCases) }}
+                {{ end }}
+                <div class="text-3xl font-bold text-blue-600 mb-2">{{ $totalUseCases }}</div>
+                <div class="text-gray-600">Use Cases</div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                {{ $totalROI := 0 }}
+                {{ range .Site.Data.projects.projects }}
+                    {{ range .useCases }}
+                        {{ if .roi }}
+                            {{ $totalROI = add $totalROI .roi }}
+                        {{ end }}
+                    {{ end }}
+                {{ end }}
+                <div class="text-3xl font-bold text-purple-600 mb-2">${{ $totalROI }}K</div>
+                <div class="text-gray-600">Total ROI</div>
+            </div>
+        </div>
+        
+        <!-- Project Completion Progress -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4">Project Completion</h2>
+            
+            {{ $totalProjects := len .Site.Data.projects.projects }}
+            {{ $completedProjects := 0 }}
+            {{ range .Site.Data.projects.projects }}
+                {{ if eq .status "Completed" }}
+                    {{ $completedProjects = add $completedProjects 1 }}
+                {{ end }}
+            {{ end }}
+            
+            {{ $completionPercentage := 0 }}
+            {{ if gt $totalProjects 0 }}
+                {{ $completionPercentage = div (mul $completedProjects 100) $totalProjects }}
+            {{ end }}
+            
+            <div class="flex items-center mb-4">
+                <div class="w-full bg-gray-200 rounded-full h-4 mr-2">
+                    <div class="bg-primary h-4 rounded-full" style="width: {{ $completionPercentage }}%"></div>
+                </div>
+                <span class="text-lg font-semibold">{{ math.Round $completionPercentage }}%</span>
+            </div>
+            
+            <div class="text-sm text-gray-600">
+                {{ $completedProjects }} of {{ $totalProjects }} projects completed
+            </div>
+        </div>
+        
+        <!-- Achievement Badges -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4">Project Achievements</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Project Creator Badge -->
+                <div class="bg-gray-50 rounded-lg p-4 text-center {{ if gt (len .Site.Data.projects.projects) 0 }}border-2 border-green-500{{ else }}border border-gray-200 opacity-50{{ end }}">
+                    <div class="w-16 h-16 mx-auto mb-2 rounded-full flex items-center justify-center {{ if gt (len .Site.Data.projects.projects) 0 }}bg-green-100 text-green-600{{ else }}bg-gray-100 text-gray-400{{ end }}">
+                        <i class="fas fa-folder-plus text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold">Project Creator</h3>
+                    <p class="text-xs text-gray-600">Create your first project</p>
+                </div>
+                
+                <!-- Business Analyst Badge -->
+                {{ $projectsWithROI := 0 }}
+                {{ range .Site.Data.projects.projects }}
+                    {{ $hasROI := false }}
+                    {{ range .useCases }}
+                        {{ if .roi }}
+                            {{ $hasROI = true }}
+                        {{ end }}
+                    {{ end }}
+                    {{ if $hasROI }}
+                        {{ $projectsWithROI = add $projectsWithROI 1 }}
+                    {{ end }}
+                {{ end }}
+                
+                <div class="bg-gray-50 rounded-lg p-4 text-center {{ if gt $projectsWithROI 0 }}border-2 border-blue-500{{ else }}border border-gray-200 opacity-50{{ end }}">
+                    <div class="w-16 h-16 mx-auto mb-2 rounded-full flex items-center justify-center {{ if gt $projectsWithROI 0 }}bg-blue-100 text-blue-600{{ else }}bg-gray-100 text-gray-400{{ end }}">
+                        <i class="fas fa-chart-line text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold">Business Analyst</h3>
+                    <p class="text-xs text-gray-600">Add ROI to a project</p>
+                </div>
+                
+                <!-- Tech Stack Master Badge -->
+                {{ $uniqueTechs := slice }}
+                {{ range .Site.Data.projects.projects }}
+                    {{ range .technologies }}
+                        {{ if not (in $uniqueTechs .) }}
+                            {{ $uniqueTechs = $uniqueTechs | append . }}
+                        {{ end }}
+                    {{ end }}
+                {{ end }}
+                
+                <div class="bg-gray-50 rounded-lg p-4 text-center {{ if gt (len $uniqueTechs) 5 }}border-2 border-purple-500{{ else }}border border-gray-200 opacity-50{{ end }}">
+                    <div class="w-16 h-16 mx-auto mb-2 rounded-full flex items-center justify-center {{ if gt (len $uniqueTechs) 5 }}bg-purple-100 text-purple-600{{ else }}bg-gray-100 text-gray-400{{ end }}">
+                        <i class="fas fa-layer-group text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold">Tech Stack Master</h3>
+                    <p class="text-xs text-gray-600">Use 5+ different technologies</p>
+                </div>
+                
+                <!-- Project Completer Badge -->
+                <div class="bg-gray-50 rounded-lg p-4 text-center {{ if gt $completedProjects 0 }}border-2 border-yellow-500{{ else }}border border-gray-200 opacity-50{{ end }}">
+                    <div class="w-16 h-16 mx-auto mb-2 rounded-full flex items-center justify-center {{ if gt $completedProjects 0 }}bg-yellow-100 text-yellow-600{{ else }}bg-gray-100 text-gray-400{{ end }}">
+                        <i class="fas fa-flag-checkered text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold">Project Completer</h3>
+                    <p class="text-xs text-gray-600">Complete a project</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Projects List -->
+        <div class="mb-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Your Projects</h2>
+                <a href="#" class="bg-primary hover:bg-primary-dark text-white py-2 px-4 rounded-lg flex items-center">
+                    <i class="fas fa-plus mr-2"></i> Add New Project
+                </a>
+            </div>
+            
+            {{ if eq (len .Site.Data.projects.projects) 0 }}
+            <div class="bg-white rounded-lg shadow-md p-8 text-center">
+                <div class="text-6xl text-gray-300 mb-4">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-700 mb-2">No Projects Yet</h3>
+                <p class="text-gray-600 mb-6">Start tracking your practical implementations by adding your first project.</p>
+                <a href="#" class="bg-primary hover:bg-primary-dark text-white py-2 px-4 rounded-lg inline-flex items-center">
+                    <i class="fas fa-plus mr-2"></i> Add Your First Project
+                </a>
+            </div>
+            {{ else }}
+            <div class="grid grid-cols-1 gap-6">
+                {{ range .Site.Data.projects.projects }}
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">{{ .title }}</h3>
+                                <div class="flex items-center mb-4">
+                                    <span class="px-2 py-1 rounded-full text-xs font-medium mr-2 
+                                        {{ if eq .status "Completed" }}bg-green-100 text-green-800{{ else if eq .status "In Progress" }}bg-blue-100 text-blue-800{{ else }}bg-yellow-100 text-yellow-800{{ end }}">
+                                        {{ .status }}
+                                    </span>
+                                    <span class="text-gray-500 text-sm">Started: {{ .startDate }}</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">{{ .description }}</p>
+                            </div>
+                            <div class="ml-4">
+                                <div class="text-right">
+                                    <div class="text-sm text-gray-500">Completion</div>
+                                    <div class="text-2xl font-bold {{ if eq .status "Completed" }}text-green-600{{ else }}text-blue-600{{ end }}">{{ .progress }}%</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tech Stack -->
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-700 mb-2">Technologies</h4>
+                            <div class="flex flex-wrap gap-2">
+                                {{ range .technologies }}
+                                <span class="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs">{{ . }}</span>
+                                {{ end }}
+                            </div>
+                        </div>
+                        
+                        <!-- Use Cases -->
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-700 mb-2">Use Cases</h4>
+                            <div class="space-y-3">
+                                {{ range .useCases }}
+                                <div class="bg-gray-50 p-3 rounded-lg border border-gray-200">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <h5 class="font-medium">{{ .title }}</h5>
+                                            <p class="text-sm text-gray-600">{{ .description }}</p>
+                                        </div>
+                                        {{ if .roi }}
+                                        <div class="ml-4 bg-green-50 px-3 py-1 rounded-lg">
+                                            <div class="text-xs text-gray-500">ROI</div>
+                                            <div class="font-bold text-green-600">${{ .roi }}K</div>
+                                        </div>
+                                        {{ end }}
+                                    </div>
+                                </div>
+                                {{ end }}
+                            </div>
+                        </div>
+                        
+                        <!-- Business Case -->
+                        {{ if .businessCase }}
+                        <div>
+                            <h4 class="font-semibold text-gray-700 mb-2">Business Case</h4>
+                            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                                <p class="text-gray-700">{{ .businessCase }}</p>
+                                
+                                {{ if .businessMetrics }}
+                                <div class="mt-3 grid grid-cols-2 md:grid-cols-3 gap-3">
+                                    {{ range .businessMetrics }}
+                                    <div class="bg-white p-2 rounded border border-gray-200 text-center">
+                                        <div class="text-sm text-gray-500">{{ .name }}</div>
+                                        <div class="font-bold text-blue-600">{{ .value }}</div>
+                                    </div>
+                                    {{ end }}
+                                </div>
+                                {{ end }}
+                            </div>
+                        </div>
+                        {{ end }}
+                    </div>
+                    
+                    <div class="bg-gray-50 px-6 py-3 flex justify-between items-center border-t border-gray-200">
+                        <div class="text-sm text-gray-500">
+                            {{ if .completionDate }}
+                            Completed: {{ .completionDate }}
+                            {{ else }}
+                            Last updated: {{ .lastUpdated }}
+                            {{ end }}
+                        </div>
+                        <div>
+                            <a href="#" class="text-primary hover:text-primary-dark mr-4">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <a href="#" class="text-primary hover:text-primary-dark">
+                                <i class="fas fa-eye"></i> Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+            {{ end }}
+        </div>
+        
+        <!-- Project Ideas -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-bold mb-4">Project Ideas</h2>
+            <p class="text-gray-600 mb-4">Need inspiration? Here are some project ideas to help you practice your skills and build your portfolio.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="border border-gray-200 rounded-lg p-4 hover:border-primary hover:bg-gray-50 transition-colors">
+                    <h3 class="font-bold text-lg mb-1">E-commerce Analytics Dashboard</h3>
+                    <p class="text-gray-600 text-sm mb-2">Build a dashboard to track sales, customer behavior, and inventory.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">Data Visualization</span>
+                        <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">Business Intelligence</span>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg p-4 hover:border-primary hover:bg-gray-50 transition-colors">
+                    <h3 class="font-bold text-lg mb-1">Customer Churn Prediction</h3>
+                    <p class="text-gray-600 text-sm mb-2">Create a model to predict which customers are likely to cancel services.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded text-xs">Machine Learning</span>
+                        <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs">Customer Retention</span>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg p-4 hover:border-primary hover:bg-gray-50 transition-colors">
+                    <h3 class="font-bold text-lg mb-1">Inventory Optimization System</h3>
+                    <p class="text-gray-600 text-sm mb-2">Develop a system to optimize inventory levels and reduce costs.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-red-100 text-red-800 rounded text-xs">Supply Chain</span>
+                        <span class="px-2 py-1 bg-indigo-100 text-indigo-800 rounded text-xs">Optimization</span>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg p-4 hover:border-primary hover:bg-gray-50 transition-colors">
+                    <h3 class="font-bold text-lg mb-1">Customer Feedback Analysis</h3>
+                    <p class="text-gray-600 text-sm mb-2">Build a system to analyze customer feedback and identify trends.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">NLP</span>
+                        <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">Customer Experience</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}

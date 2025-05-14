@@ -1,0 +1,107 @@
+{
+  "projects": [
+    {
+      "id": "p1",
+      "title": "Customer Churn Prediction",
+      "description": "A machine learning model to predict which customers are likely to cancel their subscription based on historical data and behavior patterns.",
+      "status": "Completed",
+      "progress": 100,
+      "startDate": "Jan 15, 2025",
+      "completionDate": "Feb 28, 2025",
+      "lastUpdated": "Feb 28, 2025",
+      "technologies": ["Python", "Scikit-learn", "Pandas", "AWS SageMaker", "Tableau"],
+      "useCases": [
+        {
+          "title": "Proactive Customer Retention",
+          "description": "Identify at-risk customers before they cancel to enable targeted retention campaigns.",
+          "roi": 120
+        },
+        {
+          "title": "Personalized Offers",
+          "description": "Generate personalized offers based on churn risk factors to increase retention.",
+          "roi": 85
+        }
+      ],
+      "businessCase": "Reducing customer churn by just 5% can increase profitability by 25-95%. This project aims to identify customers at risk of churning with 85% accuracy, allowing for targeted interventions.",
+      "businessMetrics": [
+        {
+          "name": "Churn Reduction",
+          "value": "15%"
+        },
+        {
+          "name": "Accuracy",
+          "value": "87%"
+        },
+        {
+          "name": "ROI",
+          "value": "3.5x"
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "title": "Inventory Optimization System",
+      "description": "An automated system that optimizes inventory levels across multiple warehouses to reduce costs while maintaining service levels.",
+      "status": "In Progress",
+      "progress": 65,
+      "startDate": "Mar 10, 2025",
+      "lastUpdated": "Apr 25, 2025",
+      "technologies": ["Python", "TensorFlow", "AWS", "SQL", "Power BI"],
+      "useCases": [
+        {
+          "title": "Demand Forecasting",
+          "description": "Predict future demand to optimize purchasing and stocking decisions.",
+          "roi": 200
+        },
+        {
+          "title": "Warehouse Optimization",
+          "description": "Optimize product placement and distribution across warehouses.",
+          "roi": 150
+        },
+        {
+          "title": "Stockout Prevention",
+          "description": "Reduce stockouts by maintaining optimal inventory levels.",
+          "roi": 175
+        }
+      ],
+      "businessCase": "Excess inventory ties up capital and increases storage costs, while stockouts lead to lost sales. This system aims to reduce inventory costs by 20% while maintaining or improving service levels.",
+      "businessMetrics": [
+        {
+          "name": "Cost Reduction",
+          "value": "18%"
+        },
+        {
+          "name": "Service Level",
+          "value": "99.2%"
+        },
+        {
+          "name": "Forecast Accuracy",
+          "value": "92%"
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "title": "Customer Feedback Analysis",
+      "description": "An NLP-based system that analyzes customer feedback from multiple channels to identify trends, sentiment, and actionable insights.",
+      "status": "Planning",
+      "progress": 15,
+      "startDate": "May 5, 2025",
+      "lastUpdated": "May 10, 2025",
+      "technologies": ["Python", "BERT", "AWS Comprehend", "MongoDB", "React"],
+      "useCases": [
+        {
+          "title": "Sentiment Analysis",
+          "description": "Track customer sentiment over time and across different product lines.",
+          "roi": 90
+        },
+        {
+          "title": "Feature Prioritization",
+          "description": "Identify most requested features and pain points to guide product development.",
+          "roi": 120
+        }
+      ],
+      "businessCase": "Understanding customer feedback at scale allows for data-driven product decisions and improved customer satisfaction. This project aims to process and analyze feedback from all channels in near real-time."
+    }
+  ]
+}
