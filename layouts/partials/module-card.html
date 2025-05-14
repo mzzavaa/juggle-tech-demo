@@ -1,0 +1,141 @@
+{{ $module := . }}
+<div id="{{ $module.id }}" class="module-card relative
+    {{ if eq $module.status "Completed" }}module-completed{{ end }}
+    {{ if eq $module.status "In Progress" }}module-in-progress{{ end }}
+    {{ if eq $module.status "Unlocked" }}module-unlocked{{ end }}
+    {{ if eq $module.status "Locked" }}module-locked{{ end }}">
+    
+    <!-- Lock Overlay for Locked Modules - No blur, just a lock icon -->
+    {{ if eq $module.status "Locked" }}
+    <div class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md z-10">
+        <i class="fas fa-lock text-gray-500"></i>
+    </div>
+    {{ end }}
+    
+    <div class="flex justify-between items-start mb-2">
+        <h3 class="text-xl font-bold {{ if eq $module.status "Locked" }}text-gray-500{{ end }}">{{ $module.title }}</h3>
+        
+        <!-- Status Badge -->
+        <div class="ml-2 flex-shrink-0">
+            {{ if eq $module.status "Completed" }}
+            <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-1 rounded-full">Completed</span>
+            {{ else if eq $module.status "In Progress" }}
+            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded-full">{{ $module.progress }}% Complete</span>
+            {{ else if eq $module.status "Unlocked" }}
+            <span class="bg-amber-100 text-amber-800 text-xs font-medium px-2.5 py-1 rounded-full">Ready</span>
+            {{ else }}
+            <span class="bg-gray-100 text-gray-500 text-xs font-medium px-2.5 py-1 rounded-full">Locked</span>
+            {{ end }}
+        </div>
+    </div>
+    
+    <div class="flex items-center mb-3">
+        <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full {{ if eq $module.status "Locked" }}text-gray-500{{ end }}">{{ $module.category }}</span>
+    </div>
+    
+    <p class="text-gray-600 mb-3 text-sm {{ if eq $module.status "Locked" }}text-gray-400{{ end }}">{{ $module.description }}</p>
+    
+    <!-- Tags -->
+    <div class="flex flex-wrap gap-1 mb-3">
+        {{ range $module.tags }}
+        <span class="px-2 py-0.5 bg-gray-100 text-gray-700 rounded text-xs {{ if eq $module.status "Locked" }}text-gray-400{{ end }}">{{ . }}</span>
+        {{ end }}
+    </div>
+    
+    <!-- Progress Bar for all modules -->
+    <div class="mb-3">
+        <div class="progress-bar">
+            {{ if eq $module.status "Completed" }}
+            <div class="progress-bar-fill bg-green-500" style="width: 100%"></div>
+            {{ else if eq $module.status "In Progress" }}
+            <div class="progress-bar-fill bg-blue-500" style="width: {{ $module.progress }}%"></div>
+            {{ else if eq $module.status "Unlocked" }}
+            <div class="progress-bar-fill bg-amber-300" style="width: 0%">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="h-2 w-2 bg-amber-500 rounded-full animate-pulse"></div>
+                </div>
+            </div>
+            {{ else }}
+            <div class="progress-bar-fill bg-gray-300" style="width: 0%"></div>
+            {{ end }}
+        </div>
+    </div>
+    
+    <!-- Video Preview -->
+    {{ if $module.video }}
+    <div class="mb-3 {{ if eq $module.status "Locked" }}opacity-50{{ end }}">
+        <a href="{{ if ne $module.status "Locked" }}{{ $module.video.url }}{{ else }}#{{ end }}" 
+           {{ if ne $module.status "Locked" }}target="_blank"{{ end }} 
+           class="block relative bg-gray-100 rounded overflow-hidden h-36">
+            {{ $videoURL := $module.video.url }}
+            {{ $videoID := "" }}
+            {{ if in $videoURL "?v=" }}
+                {{ $videoID = index (split (index (split $videoURL "?v=") 1) "&") 0 }}
+            {{ else if in $videoURL "youtu.be/" }}
+                {{ $videoID = index (split (index (split $videoURL "youtu.be/") 1) "?") 0 }}
+            {{ end }}
+            
+            {{ if $videoID }}
+            <img src="https://img.youtube.com/vi/{{ $videoID }}/hqdefault.jpg" 
+                 alt="{{ $module.video.title }}" 
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                <div class="bg-red-600 text-white rounded-full w-12 h-12 flex items-center justify-center">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white p-1 text-xs">
+                {{ $module.video.title }}
+            </div>
+            {{ else }}
+            <div class="w-full h-full flex items-center justify-center bg-gray-200">
+                <i class="fas fa-video text-gray-400 text-4xl"></i>
+            </div>
+            {{ end }}
+        </a>
+    </div>
+    {{ end }}
+    
+    <!-- Two-column layout for focus areas -->
+    <div class="grid grid-cols-2 gap-3 mb-3">
+        <div>
+            <h4 class="font-semibold text-gray-700 text-xs {{ if eq $module.status "Locked" }}text-gray-400{{ end }}">Tech Focus:</h4>
+            <p class="text-gray-600 text-xs {{ if eq $module.status "Locked" }}text-gray-400{{ end }}">{{ $module.techFocus }}</p>
+        </div>
+        <div>
+            <h4 class="font-semibold text-gray-700 text-xs {{ if eq $module.status "Locked" }}text-gray-400{{ end }}">Juggling Focus:</h4>
+            <p class="text-gray-600 text-xs {{ if eq $module.status "Locked" }}text-gray-400{{ end }}">{{ $module.jugglingFocus }}</p>
+        </div>
+    </div>
+    
+    <div class="mt-auto pt-3 border-t border-gray-200">
+        <div class="flex justify-between items-center">
+            <div>
+                <span class="text-xs text-gray-500">
+                    <i class="fas fa-clock mr-1"></i> {{ $module.duration.tech }}
+                </span>
+            </div>
+            
+            {{ if eq $module.status "Completed" }}
+            <a href="/modules/#{{ $module.id }}" class="btn btn-outline text-xs py-1.5">Review</a>
+            {{ else if eq $module.status "In Progress" }}
+            <a href="/modules/#{{ $module.id }}" class="btn btn-primary text-xs py-1.5">Continue</a>
+            {{ else if eq $module.status "Unlocked" }}
+            <a href="/modules/#{{ $module.id }}" class="btn btn-primary text-xs py-1.5">Start</a>
+            {{ else }}
+            <span class="text-xs text-gray-400">
+                <i class="fas fa-lock mr-1"></i> Complete previous modules
+            </span>
+            {{ end }}
+        </div>
+    </div>
+    
+    <!-- Course Link if available -->
+    {{ if and $module.courseLink (ne $module.status "Locked") }}
+    <div class="mt-2 text-xs">
+        <a href="{{ $module.courseLink }}" target="_blank" class="text-primary hover:underline flex items-center">
+            <i class="fas fa-external-link-alt mr-1"></i> Course Materials
+        </a>
+    </div>
+    {{ end }}
+</div>

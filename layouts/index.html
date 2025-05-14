@@ -63,51 +63,38 @@
     </div>
 </section>
 
-<!-- Current Module -->
-{{ $currentModule := index (where $modules "status" "In Progress") 0 }}
-{{ if $currentModule }}
+<!-- Current Modules -->
 <section class="py-8 bg-gray-50">
     <div class="container mx-auto px-4">
-        <h2 class="text-2xl font-bold mb-6">Current Module</h2>
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold">Current Modules</h2>
+            <a href="/modules/" class="text-primary hover:underline">View All Modules</a>
+        </div>
         
-        <div class="module-card module-in-progress">
-            <h3 class="text-xl font-bold mb-2">{{ $currentModule.title }}</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- In Progress Modules -->
+            {{ range where $modules "status" "In Progress" }}
+                {{ partial "module-card.html" . }}
+            {{ end }}
             
-            <div class="flex items-center mb-4">
-                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-2">{{ $currentModule.category }}</span>
-                <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">{{ $currentModule.prop }}</span>
-            </div>
+            <!-- Add Unlocked Modules to fill the row -->
+            {{ $inProgressCount := len (where $modules "status" "In Progress") }}
+            {{ if lt $inProgressCount 3 }}
+                {{ range first (sub 3 $inProgressCount) (where $modules "status" "Unlocked") }}
+                    {{ partial "module-card.html" . }}
+                {{ end }}
+            {{ end }}
             
-            <p class="text-gray-600 mb-4">{{ $currentModule.description }}</p>
-            
-            <div class="mb-4">
-                <div class="flex justify-between text-sm mb-1">
-                    <span>Progress</span>
-                    <span>{{ $currentModule.progress }}%</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-bar-fill" data-percentage="{{ $currentModule.progress }}"></div>
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div>
-                    <h4 class="font-semibold text-gray-700">Tech Focus:</h4>
-                    <p class="text-gray-600">{{ $currentModule.techFocus }}</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-gray-700">Juggling Focus:</h4>
-                    <p class="text-gray-600">{{ $currentModule.jugglingFocus }}</p>
-                </div>
-            </div>
-            
-            <div class="flex justify-end">
-                <a href="/modules/#{{ $currentModule.id }}" class="btn btn-primary">Continue Learning</a>
-            </div>
+            <!-- Add Completed Modules if needed to ensure at least 3 cards -->
+            {{ $displayedCount := add $inProgressCount (len (first (sub 3 $inProgressCount) (where $modules "status" "Unlocked"))) }}
+            {{ if lt $displayedCount 3 }}
+                {{ range first (sub 3 $displayedCount) (where $modules "status" "Completed") }}
+                    {{ partial "module-card.html" . }}
+                {{ end }}
+            {{ end }}
         </div>
     </div>
 </section>
-{{ end }}
 
 <!-- Recent Achievements -->
 <section class="py-8">
@@ -117,7 +104,7 @@
             <a href="/achievements/" class="text-primary hover:underline">View All</a>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             {{ range first 3 (where .Site.Data.achievements.achievements "status" "Unlocked") }}
             <div class="achievement achievement-unlocked">
                 <div class="mr-4 text-2xl text-green-500">

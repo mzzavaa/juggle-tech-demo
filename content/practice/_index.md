@@ -1,4 +1,4 @@
 ---
-title: "Practice Log"
-description: "Track your juggling practice sessions and progress"
+title: "Practice Sessions"
+description: "Track your juggling practice and progress over time"
 ---

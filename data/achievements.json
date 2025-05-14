@@ -65,6 +65,55 @@
       "category": "Foundation",
       "status": "Locked",
       "icon": "fa-solid fa-trophy"
+    },
+    {
+      "id": "devops-bootcamp-completion",
+      "title": "DevOps Bootcamp Graduate",
+      "description": "Completed the 6-month DevOps Bootcamp by TechWorld with Nana, mastering tools like Docker, Kubernetes, Jenkins, and Terraform.",
+      "category": "Technical",
+      "status": "Locked",
+      "icon": "fa-solid fa-certificate"
+    },
+    {
+      "id": "cka-certified",
+      "title": "Certified Kubernetes Administrator",
+      "description": "Achieved the CKA certification after completing the comprehensive course by TechWorld with Nana.",
+      "category": "Technical",
+      "status": "Locked",
+      "icon": "fa-solid fa-shield-alt"
+    }    ,
+    {
+      "id": "aws-certified-solutions-architect",
+      "title": "AWS Certified Solutions Architect",
+      "description": "Passed the AWS Certified Solutions Architect exam after completing the course by TechWorld with Nana.",
+      "category": "Technical",
+      "status": "Locked",
+      "icon": "fa-solid fa-cloud"
+    },
+    {
+      "id": "docker-master",
+      "title": "Docker Master",
+      "description": "Completed the Docker Mastery course by TechWorld with Nana, mastering Docker and Kubernetes.",
+      "category": "Technical",
+      "status": "Locked",
+      "icon": "fa-solid fa-cube"
+    }
+    ,
+    {
+      "id": "terraform-expert",
+      "title": "Terraform Expert",
+      "description": "Completed the Terraform course by TechWorld with Nana, mastering Infrastructure as Code.",
+      "category": "Technical",
+      "status": "Locked",
+      "icon": "fa-solid fa-code-branch"
+    },
+    {
+      "id": "jenkins-guru",
+      "title": "Jenkins Guru",
+      "description": "Completed the Jenkins course by TechWorld with Nana, mastering CI/CD pipelines.",
+      "category": "Technical",
+      "status": "Locked",
+      "icon": "fa-solid fa-tools"
     }
   ]
 }

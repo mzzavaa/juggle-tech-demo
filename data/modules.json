@@ -2,9 +2,9 @@
   "modules": [
     {
       "id": "module-1",
-      "title": "First Throw – Setting the Stage",
-      "techFocus": "Setup dev environment (Python, AWS CLI) and project scaffolding",
-      "jugglingFocus": "Foundations (toss a ball, don't aim to catch yet)",
+      "title": "First Throw \u2013 Setting the Stage",
+      "techFocus": "Setup development environment (Python, AWS CLI) and project scaffolding",
+      "jugglingFocus": "One ball throwing and catching",
       "description": "Prepare your tools and define your first practice space. Like a juggler's first throw, we'll set up our development environment and project structure without worrying about the full implementation yet.",
       "outcomes": [
         "Development environment ready with Python and AWS CLI",
@@ -22,13 +22,23 @@
       "category": "Foundation",
       "prop": "ball",
       "useCase": "Establishing the foundation for OTTO, our AI assistant project",
-      "businessValue": "Proper setup reduces future technical debt and ensures smooth development"
+      "businessValue": "Proper setup reduces future technical debt and ensures smooth development",
+      "tags": [
+        "cloud",
+        "tech",
+        "foundation"
+      ],
+      "video": {
+        "title": "AWS CLI for Beginners",
+        "url": "https://www.youtube.com/watch?v=9oYd5KQM8AQ"
+      },
+      "courseLink": "https://www.techworld-with-nana.com/courses/aws-for-beginners"
     },
     {
       "id": "module-2",
-      "title": "One Ball – First Model Deployment",
+      "title": "One Ball \u2013 First Model Deployment",
       "techFocus": "Amazon Bedrock: Deploy a foundation model via API",
-      "jugglingFocus": "One ball basic throw and catch",
+      "jugglingFocus": "Two ball throwing and catching",
       "description": "Deploy and call your first Bedrock model using Python SDK (Boto3). Like juggling one ball up and down reliably, we'll establish a consistent connection to our first AI model.",
       "outcomes": [
         "Bedrock service access configured",
@@ -46,13 +56,23 @@
       "category": "Technical",
       "prop": "ball",
       "useCase": "Creating the core Q&A capability for OTTO",
-      "businessValue": "Enables basic AI-powered responses, establishing proof of concept"
+      "businessValue": "Enables basic AI-powered responses, establishing proof of concept",
+      "tags": [
+        "ai",
+        "tech",
+        "cloud"
+      ],
+      "video": {
+        "title": "Integrating Generative AI Models with Amazon Bedrock",
+        "url": "https://www.youtube.com/watch?v=nSQrY-uPWLY"
+      },
+      "courseLink": "https://www.techworld-with-nana.com/courses/aws-bootcamp"
     },
     {
       "id": "module-3",
-      "title": "Articulating Your Use Case – Business First Thinking",
+      "title": "Articulating Your Use Case \u2013 Business First Thinking",
       "techFocus": "Requirements gathering and use case definition",
-      "jugglingFocus": "Understanding the performance space and audience",
+      "jugglingFocus": "Balancing rings and controlled 3 ball patterns",
       "description": "Learn to formulate real problems and identify ROI before starting development. Like a juggler understanding their performance space, we'll define the boundaries and goals of our AI assistant.",
       "outcomes": [
         "Clearly defined use case document",
@@ -61,7 +81,7 @@
       ],
       "duration": {
         "tech": "3 hours",
-        "juggling": "1-2 days"
+        "juggling": "3-5 days"
       },
       "status": "Unlocked",
       "progress": 0,
@@ -70,13 +90,23 @@
       "category": "Business",
       "prop": "rings",
       "useCase": "Defining OTTO's purpose and target users",
-      "businessValue": "Ensures development efforts align with actual business needs and user requirements"
+      "businessValue": "Ensures development efforts align with actual business needs and user requirements",
+      "tags": [
+        "business",
+        "cloud",
+        "change"
+      ],
+      "video": {
+        "title": "AWS Pricing Calculator\u2014in 10 minutes",
+        "url": "https://www.youtube.com/watch?v=GNxDPdTwA90"
+      },
+      "courseLink": "https://www.techworld-with-nana.com/courses/aws-bootcamp"
     },
     {
       "id": "module-4",
-      "title": "Two Balls – Adding Memory",
+      "title": "Two Balls \u2013 Adding Memory",
       "techFocus": "Implementing conversation history with DynamoDB",
-      "jugglingFocus": "Basic two ball exchange pattern",
+      "jugglingFocus": "Basic 3 ball cascade",
       "description": "Add memory to your AI assistant using DynamoDB. Like juggling two balls, we'll manage the back-and-forth between the user input and conversation history.",
       "outcomes": [
         "DynamoDB table for conversation history",
@@ -94,13 +124,23 @@
       "category": "Technical",
       "prop": "ball",
       "useCase": "Enabling OTTO to maintain context in conversations",
-      "businessValue": "Improves user experience by reducing repetition and enabling complex interactions"
+      "businessValue": "Improves user experience by reducing repetition and enabling complex interactions",
+      "tags": [
+        "ai",
+        "tech",
+        "cloud"
+      ],
+      "video": {
+        "title": "AWS DynamoDB Tutorial For Beginners",
+        "url": "https://www.youtube.com/watch?v=2k2GINpO308"
+      },
+      "courseLink": "https://www.techworld-with-nana.com/courses/aws-bootcamp"
     },
     {
       "id": "module-5",
-      "title": "Designing ROI – Cost Awareness",
+      "title": "Designing ROI \u2013 Cost Awareness",
       "techFocus": "AWS cost estimation and optimization",
-      "jugglingFocus": "Efficiency in movement and energy conservation",
+      "jugglingFocus": "Balancing rings and controlled 3 ball patterns",
       "description": "Calculate the costs of your AI solution and compare with potential benefits. Like a juggler optimizing their movements, we'll ensure our solution is economically efficient.",
       "outcomes": [
         "Cost breakdown of AWS services used",
@@ -109,16 +149,97 @@
       ],
       "duration": {
         "tech": "2 hours",
-        "juggling": "2-3 days"
+        "juggling": "3-5 days"
       },
       "status": "Locked",
       "progress": 0,
       "achievement": "ROI Wizard",
       "achievementId": "roi-wizard",
       "category": "Business",
-      "prop": "clubs",
+      "prop": "rings",
       "useCase": "Justifying OTTO's development and operational costs",
-      "businessValue": "Provides clear financial justification for the project and identifies optimization opportunities"
+      "businessValue": "Provides clear financial justification for the project and identifies optimization opportunities",
+      "tags": [
+        "business",
+        "cloud",
+        "change"
+      ],
+      "video": {
+        "title": "AWS Pricing Calculator\u2014in 10 minutes",
+        "url": "https://www.youtube.com/watch?v=GNxDPdTwA90"
+      },
+      "courseLink": "https://www.techworld-with-nana.com/courses/aws-bootcamp"
+    },
+    {
+      "id": "module-cka-course",
+      "title": "Certified Kubernetes Administrator (CKA) Course",
+      "techFocus": "In-depth Kubernetes training including architecture, networking, security, and troubleshooting.",
+      "jugglingFocus": "4 ball patterns",
+      "description": "A comprehensive course by TechWorld with Nana to prepare for the CKA certification exam.",
+      "outcomes": [
+        "Understanding of Kubernetes core concepts",
+        "Hands-on experience with Kubernetes clusters",
+        "Readiness for the CKA certification exam"
+      ],
+      "duration": {
+        "tech": "Variable",
+        "juggling": "1-2 weeks"
+      },
+      "status": "Locked",
+      "progress": 0,
+      "achievement": "Certified Kubernetes Administrator",
+      "achievementId": "cka-certified",
+      "category": "Technical",
+      "prop": "clubs",
+      "useCase": "Advancing skills in container orchestration",
+      "businessValue": "Validates expertise in managing Kubernetes environments",
+      "tags": [
+        "cloud",
+        "tech",
+        "certification"
+      ],
+      "video": {
+        "title": "Certified Kubernetes Administrator (CKA) Course",
+        "url": "https://www.youtube.com/watch?v=pDrjQWo3CxI"
+      },
+      "courseLink": "https://www.techworld-with-nana.com/courses/kubernetes-administrator-cka"
+    },
+    {
+      "id": "module-slackbot-5ball",
+      "title": "Slackbot System \u2013 Orchestrating 5 Balls of AI",
+      "techFocus": "Multi-agent orchestration with CrewAI, Bedrock, LangChain, Slack API",
+      "jugglingFocus": "5 ball cascade or Mills Mess variations",
+      "description": "Design and implement a production-grade Slackbot driven by multi-agent collaboration, AI reasoning, and external integrations. This is your final juggling act \u2013 the full cascade of tools, APIs, and structured planning.",
+      "outcomes": [
+        "CrewAI system with Six Thinking Hats method",
+        "Slackbot capable of posting, triggering AI actions",
+        "YAML-defined agents and task workflows",
+        "Modular GitHub + Sessionize integration"
+      ],
+      "duration": {
+        "tech": "2-3 weeks",
+        "juggling": "3+ weeks"
+      },
+      "status": "Locked",
+      "progress": 0,
+      "achievement": "AI Orchestrator",
+      "achievementId": "slackbot-ai-orchestrator",
+      "category": "Technical",
+      "prop": "balls",
+      "useCase": "End-to-end intelligent event planning system for AWS user groups",
+      "businessValue": "Transforms manual processes into structured, intelligent automation with community value",
+      "tags": [
+        "ai",
+        "tech",
+        "automation",
+        "cloud",
+        "change"
+      ],
+      "video": {
+        "title": "Multi-Agent AI Apps with CrewAI",
+        "url": "https://www.youtube.com/watch?v=t_GgOw_1v0U"
+      },
+      "courseLink": "https://www.techworld-with-nana.com/courses/ai-automation-with-agents"
     }
   ]
 }

@@ -102,6 +102,71 @@
         }
       ],
       "businessCase": "Understanding customer feedback at scale allows for data-driven product decisions and improved customer satisfaction. This project aims to process and analyze feedback from all channels in near real-time."
+    },
+    {
+      "id": "p4",
+      "title": "CI/CD Pipeline Implementation",
+      "description": "Developed a robust CI/CD pipeline using Jenkins, Docker, and Kubernetes as part of the DevOps Bootcamp.",
+      "status": "In Progress",
+      "progress": 50,
+      "startDate": "May 1, 2025",
+      "lastUpdated": "May 14, 2025",
+      "technologies": ["Jenkins", "Docker", "Kubernetes", "Git"],
+      "useCases": [
+        {
+          "title": "Automated Deployment",
+          "description": "Streamlined the deployment process to reduce manual errors and increase efficiency.",
+          "roi": 150
+        }
+      ],
+      "businessCase": "Implementing CI/CD pipelines accelerates software delivery and improves product quality.",
+      "businessMetrics": [
+        {
+          "name": "Deployment Frequency",
+          "value": "Daily"
+        },
+        {
+          "name": "Change Failure Rate",
+          "value": "5%"
+        },
+        {
+          "name": "Mean Time to Recovery",
+          "value": "30 minutes"
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "title": "Infrastructure as Code with Terraform",
+      "description": "Provisioned and managed cloud infrastructure using Terraform scripts, enhancing scalability and consistency.",
+      "status": "Planned",
+      "progress": 0,
+      "startDate": "June 1, 2025",
+      "technologies": ["Terraform", "AWS"],
+      "useCases": [
+        {
+          "title": "Automated Infrastructure Provisioning",
+          "description": "Enabled repeatable and version-controlled infrastructure deployments.",
+          "roi": 200
+        }
+      ],
+      "businessCase": "Adopting Infrastructure as Code reduces manual configuration errors and accelerates infrastructure deployment.",
+      "businessMetrics": [
+        {
+          "name": "Provisioning Time Reduction",
+          "value": "70%"
+        },
+        {
+          "name": "Infrastructure Consistency",
+          "value": "100%"
+        },
+        {
+          "name": "Cost Savings",
+          "value": "20%"
+        }
+      ]
     }
+    
+    
   ]
 }

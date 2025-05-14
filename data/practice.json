@@ -8,7 +8,8 @@
       "catches": 42,
       "drops": 8,
       "streak": 12,
-      "notes": "First practice session. Getting comfortable with the basic throw."
+      "notes": "First practice session. Getting comfortable with the basic throw.",
+      "image": "practice1.png"
     },
     {
       "id": "practice-2",
@@ -18,7 +19,8 @@
       "catches": 67,
       "drops": 12,
       "streak": 18,
-      "notes": "Focused on consistent height and hand position."
+      "notes": "Focused on consistent height and hand position.",
+      "image": "practice2.png"
     },
     {
       "id": "practice-3",
@@ -28,7 +30,8 @@
       "catches": 53,
       "drops": 9,
       "streak": 22,
-      "notes": "Starting to get more comfortable with one ball."
+      "notes": "Starting to get more comfortable with one ball.",
+      "image": "practice3.png"
     }
   ],
   "stats": {
@@ -37,5 +40,97 @@
     "totalDrops": 29,
     "longestStreak": 22,
     "averageSessionLength": 16.7
-  }
+  },
+  "tips": [
+    {
+      "title": "Consistency is Key",
+      "description": "Short, regular practice sessions are more effective than occasional long ones."
+    },
+    {
+      "title": "Focus on Form",
+      "description": "Perfect your technique before increasing difficulty. Quality over quantity."
+    },
+    {
+      "title": "Track Your Progress",
+      "description": "Recording your practice sessions helps you see improvement over time."
+    },
+    {
+      "title": "Start Simple",
+      "description": "Master one ball before moving to two, and two before moving to three."
+    },
+    {
+      "title": "Use Different Props",
+      "description": "Try different props like balls, rings, and clubs to develop varied skills."
+    }
+  ],
+  "resources": [
+    {
+      "title": "Juggling and Your Brain",
+      "description": "Learn how juggling improves neural connections and cognitive function.",
+      "link": "https://thejugglingcompany.com/juggling-and-your-brain",
+      "image": "jugglingandyourbrain.png"
+    },
+    {
+      "title": "Juggling and Technology",
+      "description": "Discover how juggling skills relate to technology learning and problem-solving.",
+      "link": "https://thejugglingcompany.com/juggling-and-technology",
+      "image": "jugglingandtechnology.png"
+    },
+    {
+      "title": "Juggling and Change Management",
+      "description": "Explore how juggling metaphors apply to managing change in organizations.",
+      "link": "https://thejugglingcompany.com/juggling-and-change",
+      "image": "jugglingandchange.png"
+    }
+  ],
+  "tutorials": [
+    {
+      "instructor": "Taylor Tries",
+      "title": "Learn to JUGGLE 3 BALLS - Beginner Tutorial",
+      "description": "This comprehensive guide covers the 3-ball cascade, offering tips and troubleshooting advice.",
+      "link": "https://www.youtube.com/watch?v=dCYDZDlcO6g"
+    },
+    {
+      "instructor": "Taylor Tries",
+      "title": "Juggling Tutorials Playlist",
+      "description": "A curated list of tutorials ranging from basic to intermediate tricks.",
+      "link": "https://www.youtube.com/playlist?list=PLGV8mtb7t-4PuziHauottOfqpKPnwNncw"
+    },
+    {
+      "instructor": "Taylor Tries",
+      "title": "HOW TO JUGGLE - Claymotion Juggling Tutorial",
+      "description": "An introduction to the Claymotion style, suitable for beginners.",
+      "link": "https://www.youtube.com/watch?v=1JUC7I2Zt7w"
+    },
+    {
+      "instructor": "Taylor Tries",
+      "title": "Learn to JUGGLE 4 BALLS - Tutorial",
+      "description": "Step up your juggling skills with this tutorial on the 4-ball fountain pattern.",
+      "link": "https://www.youtube.com/watch?v=rvxfXEHML4s"
+    },
+    {
+      "instructor": "Niels Duinker",
+      "title": "How to Juggle 3 Balls - Tutorial",
+      "description": "A step-by-step guide to the 3-ball cascade pattern.",
+      "link": "https://www.youtube.com/watch?v=whgT2oAIGJc"
+    },
+    {
+      "instructor": "Niels Duinker",
+      "title": "Learn to Juggle Tutorials Playlist",
+      "description": "A collection of tutorials covering various juggling skills.",
+      "link": "https://www.youtube.com/playlist?list=PL5cN4uQDIiVJxBu0DSF2H2y4k5G3O6CxC"
+    },
+    {
+      "instructor": "Niels Duinker",
+      "title": "Tutorial - How to Juggle 2 Balls in 1 Hand",
+      "description": "Focuses on developing control and coordination with one-handed juggling.",
+      "link": "https://www.youtube.com/watch?v=7DKaWwRo-EI"
+    },
+    {
+      "instructor": "Niels Duinker",
+      "title": "How to Juggle 4 Balls - Tutorial",
+      "description": "Learn the 4-ball fountain pattern with clear step-by-step instructions.",
+      "link": "https://www.youtube.com/watch?v=wBQN81eQRGw"
+    }
+  ]
 }

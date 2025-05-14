@@ -10,184 +10,29 @@
 
 <section class="py-8">
     <div class="container mx-auto px-4">
-        <!-- In Progress Modules -->
-        <h2 class="text-2xl font-bold mb-6">In Progress</h2>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
-            {{ range where .Site.Data.modules.modules "status" "In Progress" }}
-            <div id="{{ .id }}" class="module-card module-in-progress">
-                <h3 class="text-xl font-bold mb-2">{{ .title }}</h3>
-                
-                <div class="flex items-center mb-4">
-                    <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-2">{{ .category }}</span>
-                    <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">{{ .prop }}</span>
-                </div>
-                
-                <p class="text-gray-600 mb-4">{{ .description }}</p>
-                
-                <div class="mb-4">
-                    <div class="flex justify-between text-sm mb-1">
-                        <span>Progress</span>
-                        <span>{{ .progress }}%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-bar-fill" data-percentage="{{ .progress }}"></div>
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <div>
-                        <h4 class="font-semibold text-gray-700">Tech Focus:</h4>
-                        <p class="text-gray-600">{{ .techFocus }}</p>
-                    </div>
-                    <div>
-                        <h4 class="font-semibold text-gray-700">Juggling Focus:</h4>
-                        <p class="text-gray-600">{{ .jugglingFocus }}</p>
-                    </div>
-                </div>
-                
-                <div class="mt-4 pt-4 border-t border-gray-200">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <span class="text-sm text-gray-500">
-                                <i class="fas fa-clock mr-1"></i> Tech: {{ .duration.tech }}
-                            </span>
-                            <span class="text-sm text-gray-500 ml-4">
-                                <i class="fas fa-hand-sparkles mr-1"></i> Juggling: {{ .duration.juggling }}
-                            </span>
-                        </div>
-                        <a href="#" class="btn btn-primary">Continue</a>
-                    </div>
-                </div>
+        <!-- Course Structure -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold mb-4">Course Structure</h2>
+            <p class="text-gray-600 mb-4">The modules build progressively from cloud basics → DevOps → AI basics → AI memory → business value, making it easier for learners to develop skills step-by-step.</p>
+            
+            <div class="mt-4">
+                <h3 class="font-bold text-lg mb-2">Progressive Juggling Training:</h3>
+                <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                    <li>Module 1: One ball throw/catch (foundation)</li>
+                    <li>Module 2: Two balls throw/catch</li>
+                    <li>Module 4: Three ball cascade</li>
+                    <li>Module 5: Controlled 3 ball / rings balance</li>
+                    <li>DevOps Bootcamp: Advanced 3 ball tricks like reverse cascade</li>
+                    <li>CKA course: 4 ball juggling</li>
+                    <li>Full AI Slackbot project: 5 balls or Mills Mess</li>
+                </ul>
             </div>
-            {{ end }}
         </div>
         
-        <!-- Completed Modules -->
-        <h2 class="text-2xl font-bold mb-6">Completed</h2>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
-            {{ range where .Site.Data.modules.modules "status" "Completed" }}
-            <div id="{{ .id }}" class="module-card module-completed">
-                <h3 class="text-xl font-bold mb-2">{{ .title }}</h3>
-                
-                <div class="flex items-center mb-4">
-                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-2">{{ .category }}</span>
-                    <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">{{ .prop }}</span>
-                </div>
-                
-                <p class="text-gray-600 mb-4">{{ .description }}</p>
-                
-                <div class="mb-4">
-                    <div class="flex justify-between text-sm mb-1">
-                        <span>Completed</span>
-                        <span>100%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-bar-fill bg-green-500" data-percentage="100"></div>
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <div>
-                        <h4 class="font-semibold text-gray-700">Tech Focus:</h4>
-                        <p class="text-gray-600">{{ .techFocus }}</p>
-                    </div>
-                    <div>
-                        <h4 class="font-semibold text-gray-700">Juggling Focus:</h4>
-                        <p class="text-gray-600">{{ .jugglingFocus }}</p>
-                    </div>
-                </div>
-                
-                <div class="mt-4 pt-4 border-t border-gray-200">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <span class="text-sm text-gray-500">
-                                <i class="fas fa-trophy mr-1 text-yellow-500"></i> {{ .achievement }}
-                            </span>
-                        </div>
-                        <a href="#" class="btn btn-outline">Review</a>
-                    </div>
-                </div>
-            </div>
-            {{ end }}
-        </div>
-        
-        <!-- Unlocked Modules -->
-        <h2 class="text-2xl font-bold mb-6">Unlocked & Ready</h2>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
-            {{ range where .Site.Data.modules.modules "status" "Unlocked" }}
-            <div id="{{ .id }}" class="module-card module-unlocked">
-                <h3 class="text-xl font-bold mb-2">{{ .title }}</h3>
-                
-                <div class="flex items-center mb-4">
-                    <span class="bg-amber-100 text-amber-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-2">{{ .category }}</span>
-                    <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">{{ .prop }}</span>
-                </div>
-                
-                <p class="text-gray-600 mb-4">{{ .description }}</p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <div>
-                        <h4 class="font-semibold text-gray-700">Tech Focus:</h4>
-                        <p class="text-gray-600">{{ .techFocus }}</p>
-                    </div>
-                    <div>
-                        <h4 class="font-semibold text-gray-700">Juggling Focus:</h4>
-                        <p class="text-gray-600">{{ .jugglingFocus }}</p>
-                    </div>
-                </div>
-                
-                <div class="mt-4 pt-4 border-t border-gray-200">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <span class="text-sm text-gray-500">
-                                <i class="fas fa-clock mr-1"></i> Tech: {{ .duration.tech }}
-                            </span>
-                            <span class="text-sm text-gray-500 ml-4">
-                                <i class="fas fa-hand-sparkles mr-1"></i> Juggling: {{ .duration.juggling }}
-                            </span>
-                        </div>
-                        <a href="#" class="btn btn-primary">Start</a>
-                    </div>
-                </div>
-            </div>
-            {{ end }}
-        </div>
-        
-        <!-- Locked Modules -->
-        <h2 class="text-2xl font-bold mb-6">Locked</h2>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {{ range where .Site.Data.modules.modules "status" "Locked" }}
-            <div id="{{ .id }}" class="module-card module-locked">
-                <h3 class="text-xl font-bold mb-2">{{ .title }}</h3>
-                
-                <div class="flex items-center mb-4">
-                    <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-2">{{ .category }}</span>
-                    <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">{{ .prop }}</span>
-                </div>
-                
-                <p class="text-gray-600 mb-4">{{ .description }}</p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <div>
-                        <h4 class="font-semibold text-gray-700">Tech Focus:</h4>
-                        <p class="text-gray-600">{{ .techFocus }}</p>
-                    </div>
-                    <div>
-                        <h4 class="font-semibold text-gray-700">Juggling Focus:</h4>
-                        <p class="text-gray-600">{{ .jugglingFocus }}</p>
-                    </div>
-                </div>
-                
-                <div class="mt-4 pt-4 border-t border-gray-200">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <span class="text-sm text-gray-500">
-                                <i class="fas fa-lock mr-1"></i> Complete previous modules to unlock
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Module Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {{ range .Site.Data.modules.modules }}
+                {{ partial "module-card.html" . }}
             {{ end }}
         </div>
     </div>

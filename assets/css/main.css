@@ -2,6 +2,86 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Aspect ratio utilities */
+.aspect-w-16 {
+  position: relative;
+  padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%);
+  --tw-aspect-w: 16;
+}
+
+.aspect-h-9 {
+  --tw-aspect-h: 9;
+}
+
+.aspect-w-16 > * {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* Module cards */
+.module-card {
+  @apply bg-white rounded-lg shadow-md p-4 flex flex-col h-full;
+  transition: all 0.3s ease;
+}
+
+.module-in-progress {
+  @apply border-l-4 border-blue-500;
+}
+
+.module-completed {
+  @apply border-l-4 border-green-500;
+}
+
+.module-unlocked {
+  @apply border-l-4 border-amber-500;
+}
+
+.module-locked {
+  @apply border-l-4 border-gray-300;
+}
+
+.module-card:hover {
+  @apply shadow-lg;
+  transform: translateY(-2px);
+}
+
+.module-locked:hover {
+  transform: none;
+}
+
+/* Progress bar */
+.progress-bar {
+  @apply w-full bg-gray-200 rounded-full h-2 relative;
+}
+
+.progress-bar-fill {
+  @apply h-2 rounded-full relative;
+  transition: width 1s ease-in-out;
+}
+
+/* Buttons */
+.btn {
+  @apply font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  @apply text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:ring-primary-light;
+}
+
+.btn-outline {
+  @apply text-primary bg-white border border-primary hover:bg-gray-50 focus:ring-4 focus:ring-primary-light;
+}
+
 @layer base {
   body {
     @apply font-sans text-gray-800 bg-gray-50;
