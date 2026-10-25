@@ -71,3 +71,11 @@ jspm_packages/
 
 # Yarn Integrity file
 .yarn-integrity
+
+# Local and secret files
+__pycache__/
+.venv/
+*.pem
+.claude/settings.local.json
+!.env.sample
+!.env.template
